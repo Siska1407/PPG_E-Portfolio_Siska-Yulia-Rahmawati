@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" rx="36" fill="#eef4fb"/>
+  <rect x="120" y="180" width="220" height="240" rx="24" fill="#ffffff" stroke="#dfe6ef" stroke-width="8"/>
+  <rect x="380" y="150" width="240" height="260" rx="24" fill="#0b3d91"/>
+  <circle cx="230" cy="260" r="70" fill="#ffc72c"/>
+  <path d="M430 320h120" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M430 270h90" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M430 220h70" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <text x="400" y="530" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#0b3d91" font-weight="700">Pembelajaran Bermakna</text>
+</svg>

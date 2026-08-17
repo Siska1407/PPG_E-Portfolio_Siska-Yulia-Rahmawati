@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" rx="36" fill="#f7f9fc"/>
+  <circle cx="280" cy="250" r="90" fill="#0b3d91"/>
+  <circle cx="520" cy="250" r="100" fill="#ffc72c"/>
+  <path d="M220 420c40-70 140-110 220-110s180 40 220 110" fill="#0b3d91" opacity="0.9"/>
+  <text x="400" y="530" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#0b3d91" font-weight="700">Guru yang Menginspirasi</text>
+</svg>

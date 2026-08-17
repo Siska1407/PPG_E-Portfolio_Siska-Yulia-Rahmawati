@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "judul": "Topik 1",
+    "deskripsi": "Isi ringkasan topik.",
+    "pdf": "topik1.pdf",
+    "gambar": "topik1.jpg",
+    "video": ""
+  },
+  {
+    "id": 2,
+    "judul": "Topik 2",
+    "deskripsi": "Isi ringkasan topik.",
+    "pdf": "topik2.pdf",
+    "gambar": "topik2.jpg",
+    "video": ""
+  }
+]
