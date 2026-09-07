@@ -5,218 +5,573 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portofolio Mata Kuliah Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran - Siska Yulia Rahmawati">
-    <title>Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran | E - Portofolio</title>
+    <title>Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran | E-Portfolio</title>
+
+    <!-- CSS UTAMA -->
     <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        /* =====================================================
+           FOLDER-VIEW : satu tombol per topik
+           ===================================================== */
+
+        .folder-container {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .folder-container .drive-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .folder-container .drive-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .folder-container .drive-note {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+        }
+
+        /* DARK MODE untuk FOLDER-CONTAINER */
+        body.dark .folder-container {
+            background: #1a2a42;
+            border-color: var(--border);
+        }
+
+        body.dark .folder-container .drive-btn {
+            background: #3b82f6;
+        }
+
+        body.dark .folder-container .drive-btn:hover {
+            background: #60a5fa;
+        }
+
+        body.dark .folder-container .drive-note {
+            color: var(--text-soft);
+        }
+
+        /* =====================================================
+           DOKUMEN REFLEKSI (doc-card) - DARK MODE
+           ===================================================== */
+
+        .doc-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card-header {
+            padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+            background: var(--bg-soft);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-card-header h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.15rem;
+            color: var(--um-blue);
+        }
+
+        .doc-card-header p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        .doc-card-body {
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .doc-card-body iframe {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: white;
+        }
+
+        body.dark .doc-card {
+            background: var(--white);
+            border-color: var(--border);
+        }
+
+        body.dark .doc-card-header {
+            background: #1a2a42;
+            border-bottom-color: var(--border);
+        }
+
+        body.dark .doc-card-header h3 {
+            color: var(--um-yellow);
+        }
+
+        body.dark .doc-card-header p {
+            color: var(--text-soft);
+        }
+
+        body.dark .doc-card-body iframe {
+            border-color: var(--border);
+            background: #0f172a;
+        }
+
+        /* =====================================================
+           INFO-BOX - DARK MODE
+           ===================================================== */
+
+        .info-box {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            border-left: 5px solid var(--um-yellow);
+        }
+
+        body.dark .info-box {
+            background: #1a2a42;
+            border-color: var(--border);
+        }
+
+        body.dark .info-box h3 {
+            color: var(--um-yellow);
+        }
+
+        /* =====================================================
+           TOMBOL KEMBALI - latar putih solid
+           ===================================================== */
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            background: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-soft);
+            border-color: var(--text);
+            text-decoration: none;
+        }
+
+        body.dark .btn-outline {
+            border-color: var(--border);
+            color: var(--text);
+            background: var(--white);
+        }
+
+        body.dark .btn-outline:hover {
+            background: #1a2a42;
+            border-color: var(--text);
+        }
+
+        /* =====================================================
+           RESPONSIF
+           ===================================================== */
+
+        @media (max-width: 640px) {
+            .doc-card-body iframe {
+                height: 280px;
+            }
+
+            .folder-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .folder-container .drive-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        .topic-accordion+.topic-accordion {
+            margin-top: 1.25rem;
+        }
+
+        .hero-actions {
+            margin-top: 1.5rem;
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <div class="nav-container">
-        <a class="brand" href="../../index.html">
-            Siska Yulia Rahmawati
-        </a>
+    <header class="site-header">
+        <div class="nav-container">
+            <a class="brand" href="../../index.html">
+                Siska Yulia Rahmawati
+            </a>
 
-        <nav class="nav-menu" aria-label="Navigasi utama">
-            <a href="../../index.html#hero">Home</a>
-            <a href="../../index.html#semester1">Semester 1</a>
-            <a href="../../index.html#semester2">Semester 2</a>
-            <a href="../../index.html#pengembangan">Pengembangan Diri</a>
-            <a href="../../tentang-saya.html">Tentang Saya</a>
-            
-        </nav>
+            <nav class="nav-menu" aria-label="Navigasi utama">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#semester1">Semester 1</a>
+                <a href="../../index.html#semester2">Semester 2</a>
+                <a href="../../index.html#pengembangan">Pengembangan Diri</a>
+                <a href="../../tentang-saya.html">Tentang Saya</a>
+            </nav>
 
-        <div class="nav-actions">
-            <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
-                ☾
-            </button>
+            <div class="nav-actions">
+                <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
+                    ☾
+                </button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<main>
+    <main>
 
-<section class="hero">
-    <div class="hero-content">
-        <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
-        <h1>Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran</h1>
-        <p class="hero-text">Halaman template untuk dokumentasi mata kuliah Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran. Isi topik, LK, artefak, dan refleksi di setiap bagian.</p>
-        <div class="hero-actions">
-            <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
-        </div>
-    </div>
-</section>
+        <!-- =====================================================
+        HERO
+        ===================================================== -->
 
-<section>
-    <div class="section-heading">
-        <p class="eyebrow">PENDAHULUAN</p>
-        <h2>Intisari Mata Kuliah</h2>
-    </div>
-    <div class="info-box">
-        <h3>🔍 Deskripsi Singkat</h3>
-        <p>Isi ringkasan mata kuliah, tujuan pembelajaran, dan pengalaman awal Anda mengikuti mata kuliah ini.</p>
-    </div>
-</section>
-
-<section class="section-muted">
-    <div class="section-heading">
-        <p class="eyebrow">TOPIK PEMBELAJARAN</p>
-        <h2>Topik dan Artefak</h2>
-        <p>Isi topik utama, lembar kerja, tugas, dan artefak yang Anda kerjakan.</p>
-    </div>
-
-    <details class="topic-accordion" open>
-        <summary class="topic-summary">
-            <div class="topic-summary-main">
-                <span class="timeline-number">01</span>
-                <div>
-                    <p class="eyebrow">TOPIK 1</p>
-                    <h3>Judul Topik</h3>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
+                <h1>Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran</h1>
+                <p class="hero-text">
+                    Dokumentasi proses pembelajaran, topik,
+                    lembar kerja, tugas, artefak, dan refleksi
+                    selama mengikuti mata kuliah Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran.
+                </p>
+                <div class="hero-actions">
+                    <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
                 </div>
             </div>
-        </summary>
-        <div class="topic-content">
-            <div class="topic-body">
-                <div>
-                    <h4>Deskripsi Topik</h4>
-                    <p>Isi deskripsi topik di sini.</p>
-                </div>
-                <div>
-                    <h4>📂 LK / Tugas</h4>
-                    <div class="task-list">
-                        <div class="task-item">
-                            <div>
-                                <h5>Nama LK / Tugas</h5>
-                                <p>Isi deskripsi tugas di sini.</p>
-                            </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Artefak</a>
+        </section>
+
+        <!-- =====================================================
+        PENDAHULUAN / INTISARI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+            <div class="section-heading">
+                <p class="eyebrow">PENDAHULUAN</p>
+                <h2>Intisari Mata Kuliah</h2>
+            </div>
+
+            <div class="info-box">
+                <h3>🌱 Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran</h3>
+                <p>
+                    Mata kuliah ini membahas pola pikir bertumbuh (growth mindset) dan penerapannya dalam pembelajaran. 
+                    Mahasiswa mempelajari dasar teori growth mindset, neuroplasticity, serta pengaruhnya terhadap cara 
+                    belajar, refleksi diri, dan perkembangan potensi peserta didik.
+                    Mahasiswa juga dilatih menjadi guru sebagai fasilitator pembelajaran berkelanjutan melalui strategi 
+                    seperti memberikan umpan balik yang membangun, mendorong keberanian mencoba, ketekunan menghadapi 
+                    tantangan, dan menciptakan budaya kelas yang mendukung perkembangan siswa.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================
+        TOPIK PEMBELAJARAN
+        ===================================================== -->
+
+        <section class="section-muted">
+
+            <div class="section-heading">
+                <p class="eyebrow">TOPIK PEMBELAJARAN</p>
+                <h2>Topik dan Artefak</h2>
+                <p>
+                    Dokumentasi setiap topik pembelajaran beserta
+                    LK atau tugas yang dikerjakan.
+                </p>
+            </div>
+
+            <!-- =================================================
+                 TOPIK 1
+                 ================================================= -->
+
+            <details class="topic-accordion" open>
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">01</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 1</p>
+                            <h3>Membentuk Cara Pandang Baru</h3>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </details>
+                </summary>
 
-    <details class="topic-accordion">
-        <summary class="topic-summary">
-            <div class="topic-summary-main">
-                <span class="timeline-number">02</span>
-                <div>
-                    <p class="eyebrow">TOPIK 2</p>
-                    <h3>Judul Topik</h3>
-                </div>
-            </div>
-        </summary>
-        <div class="topic-content">
-            <div class="topic-body">
-                <div>
+                <div class="topic-content">
+
                     <h4>Deskripsi Topik</h4>
-                    <p>Isi deskripsi topik di sini.</p>
+                    <p>
+                        Topik ini memberikan pengantar tentang teori pola pikir dari Carol Dweck, perbedaan mendasar
+                        antara growth mindset dan fixed mindset, serta bagaimana kedua pola pikir ini memengaruhi
+                        cara peserta didik menghadapi tantangan, kegagalan, dan usaha dalam belajar. Mahasiswa
+                        juga mempelajari neuroplastisitas sebagai dasar ilmiah bahwa kecerdasan dapat berkembang
+                        melalui latihan dan ketekunan.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1-xawY-my9wRqmvmrbQ2zQfk68fjqijQv?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 1
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
                 </div>
-                <div>
-                    <h4>📂 LK / Tugas</h4>
-                    <div class="task-list">
-                        <div class="task-item">
-                            <div>
-                                <h5>Nama LK / Tugas</h5>
-                                <p>Isi deskripsi tugas di sini.</p>
-                            </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Artefak</a>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 2
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">02</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 2</p>
+                            <h3>Cara Kerja Otak Pada Pola Pikir Bertumbuh</h3>
                         </div>
                     </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 2 membahas cara kerja otak dan neuroplastisitas, yaitu kemampuan otak untuk berubah dan berkembang melalui 
+                        pengalaman serta proses belajar. Mahasiswa mempelajari hubungan neuroplastisitas dengan growth mindset dalam 
+                        menghadapi tantangan.
+                        Topik ini juga mengkaji keterkaitan growth mindset dengan kreativitas, inovasi, dan pembelajaran mendalam, 
+                        sehingga peserta didik terdorong untuk terus belajar dan mengembangkan potensinya.
+                    </p>
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1UsmQxWnXtmqSRykwD8GvY7pwVyr3TXDM?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 2
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 3
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">03</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 3</p>
+                            <h3>Menumbuhkan dan Mengembangkan Pola Pikir Bertumbuh</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 3 membahas pengembangan pola pikir bertumbuh, dimulai dengan menganalisis hasil Mindset 
+                        Assessment Profile (MAP) untuk mengenali kecenderungan pola pikir diri sendiri.
+                        Mahasiswa mempelajari cara bergeser dari pola pikir tetap menuju pola pikir bertumbuh 
+                        serta merancang intervensi yang dapat diterapkan pada diri sendiri maupun peserta didik agar 
+                        lebih percaya pada proses, berani menghadapi tantangan, dan terus berkembang.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1fXgINBzDS3YOOkDFJDbKjlgPwmMknhIZ?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 3
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 4
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">04</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 4</p>
+                            <h3>Pola Pikir Bertumbuh dalam Konteks Pembelajaran</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 4 membahas penerapan growth mindset dalam lingkungan kelas untuk menciptakan proses 
+                        pembelajaran yang mendukung perkembangan potensi peserta didik.
+                        Mahasiswa belajar merancang dan menerapkan strategi growth mindset dalam pembelajaran, 
+                        sehingga peserta didik terdorong untuk berani mencoba, menghadapi tantangan, belajar dari 
+                        kesalahan, dan terus mengembangkan kemampuan.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1fGS8MJhgQotNT9A1J9WaQxHBYR1m2d5w?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 4
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+        </section>
+
+        <!-- =====================================================
+        REFLEKSI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+                <p class="eyebrow">REFLEKSI MATA KULIAH</p>
+                <h2>Refleksi Pembelajaran</h2>
+                <p>
+                    Dokumentasi refleksi hasil pembelajaran
+                    selama mengikuti mata kuliah Pola Pikir Bertumbuh (Growth Mindset) dalam Pembelajaran.
+                </p>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <h3>Dokumentasi Refleksi Mata Kuliah</h3>
+                    <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
+                </div>
+                <div class="doc-card-body">
+                    <iframe src="https://docs.google.com/document/d/1Iq204t-tOWjai1bU7TrRxa7uTycPBs7T/preview" title="Dokumentasi Refleksi Akhir Siklus" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
+
+        </section>
+
+        <!-- =====================================================
+        NAVIGASI KEMBALI
+        ===================================================== -->
+
+        <section class="section-muted">
+            <div class="hero-actions">
+                <a href="../../index.html#semester1" class="btn btn-outline">
+                    ← Kembali ke Semester 1
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+    BACK TO TOP
+    ===================================================== -->
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Kembali ke atas">
+        ↑
+    </button>
+
+    <!-- =====================================================
+    FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h2>PPG E - Portofolio</h2>
+                <p>
+                    Dokumentasi perjalanan dan pengembangan profesional
+                    Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan
+                    Informatika di Universitas Negeri Malang.
+                </p>
+            </div>
+
+            <div>
+                <h3>Navigasi</h3>
+                <div class="footer-links">
+                    <a href="#semester1">Semester 1</a>
+                    <a href="#semester2">Semester 2</a>
+                    <a href="#pengembangan">Pengembangan Diri</a>
+                    <a href="tentang-saya.html">Tentang Saya</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Terhubung</h3>
+                <div class="footer-links">
+                    <a href="mailto:siska.yulia.2531537@students.um.ac.id">
+                        ✉️ siska.yulia.2531537@students.um.ac.id
+                    </a>
+                    <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
+                        📷 @siskayuraa
+                    </a>
+                    <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
+                        🏛️ Universitas Negeri Malang
+                    </a>
+                </div>
+            </div>
+
         </div>
-    </details>
-</section>
 
-<section>
-    <div class="section-heading">
-        <p class="eyebrow">REFLEKSI</p>
-        <h2>Refleksi Mata Kuliah</h2>
-    </div>
-    <div class="card-grid">
-        <article class="card">
-            <div class="card-icon">💭</div>
-            <h3>Refleksi Pembelajaran</h3>
-            <p>Isikan refleksi proses belajar di mata kuliah ini.</p>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Refleksi</a>
-        </article>
-    </div>
-</section>
-
-<section class="section-muted">
-    <div class="section-heading">
-        <p class="eyebrow">NAVIGASI</p>
-        <h2>Kembali ke Daftar Mata Kuliah</h2>
-    </div>
-    <div class="hero-actions">
-        <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Daftar Mata Kuliah</a>
-    </div>
-</section>
-
-</main>
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer>
-
-    <div class="footer-grid">
-
-        <!-- KOLOM 1: BRAND -->
-        <div>
-            <h2>PPG E - Portofolio</h2>
+        <div class="footer-bottom">
             <p>
-                Dokumentasi perjalanan dan pengembangan profesional 
-                Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan 
-                Informatika di Universitas Negeri Malang.
+                © <span data-current-year>2026</span>
+                Siska Yulia Rahmawati •
+                PPG E - Portofolio
             </p>
         </div>
 
-        <!-- KOLOM 2: NAVIGASI UTAMA (Ringkas) -->
-        <div>
-            <h3>Navigasi</h3>
-            <div class="footer-links">
-                <a href="#semester1">Semester 1</a>
-                <a href="#semester2">Semester 2</a>
-                <a href="#pengembangan">Pengembangan Diri</a>
-                <a href="tentang-saya.html">Tentang Saya</a>
-            </div>
-        </div>
+    </footer>
 
-        <!-- KOLOM 3: KONTAK & SOSIAL (Teks Lengkap) -->
-        <div>
-            <h3>Informasi Kontak</h3>
-            <div class="footer-links">
-                <a href="mailto:siska.yulia.2531537@students.um.ac.id">
-                     siska.yulia.2531537@students.um.ac.id
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                     linkedin.com/in/siskayulia
-                </a>
-                <a href="https://www.instagram.com/siskayuraa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
-                     @siskayuraa
-                </a>
-                <a href="https://um.ac.id/">
-                    Universitas Negeri Malang - PPG Informatika
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>
-            © <span data-current-year>2026</span> 
-            Siska Yulia Rahmawati • 
-            PPG E - Portofolio
-        </p>
-    </div>
-
-</footer>
-
-<script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/script.js"></script>
 </body>
+
 </html>

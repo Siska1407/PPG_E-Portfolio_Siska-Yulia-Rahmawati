@@ -2,1059 +2,688 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Portofolio Mata Kuliah Computational Thinking - Siska Yulia Rahmawati">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portofolio Mata Kuliah Computational Thinking - Siska Yulia Rahmawati" />
     <title>Computational Thinking | E-Portfolio</title>
 
     <!-- CSS UTAMA -->
-    <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
 
+    <style>
+        /* =====================================================
+           FOLDER-VIEW : tampilan folder dengan satu tombol
+           ===================================================== */
+
+        .folder-container {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .folder-container .drive-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .folder-container .drive-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .folder-container .drive-btn:active {
+            transform: translateY(0px);
+        }
+
+        .folder-container .drive-note {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* dark mode */
+        body.dark-mode .folder-container {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .folder-container .drive-btn {
+            background: #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        body.dark-mode .folder-container .drive-btn:hover {
+            background: #60a5fa;
+        }
+
+        body.dark-mode .folder-container .drive-note {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        /* =====================================================
+           DOKUMEN REFLEKSI (doc-card) tetap seperti semula
+           ===================================================== */
+
+        .doc-card {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card-header {
+            padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+        }
+
+        .doc-card-header h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.15rem;
+        }
+
+        .doc-card-header p {
+            margin: 0;
+            color: var(--text-muted, #64748b);
+            font-size: 0.9rem;
+        }
+
+        .doc-card-body {
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .doc-card-body iframe {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color, #e2e8f0);
+            background: white;
+        }
+
+        body.dark-mode .doc-card {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .doc-card-header p {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        body.dark-mode .doc-card-body iframe {
+            border-color: var(--border-dark, #334155);
+            background: #0f172a;
+        }
+
+        @media (max-width: 640px) {
+            .doc-card-body iframe {
+                height: 280px;
+            }
+
+            .folder-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .folder-container .drive-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* spacing antar topik */
+        .topic-accordion+.topic-accordion {
+            margin-top: 1.25rem;
+        }
+
+        .hero-actions {
+            margin-top: 1.5rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border: 1.5px solid var(--border-color, #cbd5e1);
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-primary, #0f172a);
+            text-decoration: none;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-hover, #f1f5f9);
+            border-color: var(--text-primary, #0f172a);
+        }
+
+        body.dark-mode .btn-outline {
+            border-color: var(--border-dark, #475569);
+            color: var(--text-light, #f1f5f9);
+        }
+
+        body.dark-mode .btn-outline:hover {
+            background: var(--bg-hover-dark, #1e293b);
+            border-color: var(--text-light, #f1f5f9);
+        }
+    </style>
+</head>
 
 <body>
 
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
+    <!-- =====================================================
+    HEADER
+    ===================================================== -->
 
-<header class="site-header">
-    <div class="nav-container">
-        <a class="brand" href="../../index.html">
-            Siska Yulia Rahmawati
-        </a>
+    <header class="site-header">
+        <div class="nav-container">
+            <a class="brand" href="../../index.html">
+                Siska Yulia Rahmawati
+            </a>
 
-        <nav class="nav-menu" aria-label="Navigasi utama">
-            <a href="../../index.html#hero">Home</a>
-            <a href="../../index.html#semester1">Semester 1</a>
-            <a href="../../index.html#semester2">Semester 2</a>
-            <a href="../../index.html#pengembangan">Pengembangan Diri</a>
-            <a href="../../tentang-saya.html">Tentang Saya</a>
-        </nav>
+            <nav class="nav-menu" aria-label="Navigasi utama">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#semester1">Semester 1</a>
+                <a href="../../index.html#semester2">Semester 2</a>
+                <a href="../../index.html#pengembangan">Pengembangan Diri</a>
+                <a href="../../tentang-saya.html">Tentang Saya</a>
+            </nav>
 
-        <div class="nav-actions">
-            <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
-                ☾
-            </button>
+            <div class="nav-actions">
+                <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
+                    ☾
+                </button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
+    <!-- =====================================================
+    MAIN
+    ===================================================== -->
 
+    <main>
 
-<!-- =====================================================
-     MAIN
-     ===================================================== -->
+        <!-- =====================================================
+        HERO
+        ===================================================== -->
 
-<main>
-
-
-<!-- =====================================================
-     HERO
-     ===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <p class="eyebrow">
-            📚 SEMESTER 1 • MATA KULIAH
-        </p>
-
-        <h1>
-            Computational Thinking
-        </h1>
-
-        <p class="hero-text">
-            Dokumentasi proses pembelajaran, topik,
-            lembar kerja, tugas, artefak, dan refleksi
-            selama mengikuti mata kuliah Computational Thinking.
-        </p>
-
-            <div class="hero-actions">
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
+                <h1>Computational Thinking</h1>
+                <p class="hero-text">
+                    Dokumentasi proses pembelajaran, topik,
+                    lembar kerja, tugas, artefak, dan refleksi
+                    selama mengikuti mata kuliah Computational Thinking.
+                </p>
+                <div class="hero-actions">
             <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
         </div>
+            </div>
+        </section>
 
+        <!-- =====================================================
+        PENDAHULUAN / INTISARI MATA KULIAH
+        ===================================================== -->
 
-    </div>
+        <section>
+            <div class="section-heading">
+                <p class="eyebrow">PENDAHULUAN</p>
+                <h2>Intisari Mata Kuliah</h2>
+            </div>
 
-</section>
+            <div class="info-box">
+                <h3>🧠 Computational Thinking</h3>
+                <p>
+                    Pendahuluan Mata Kuliah Computational Thinking
+                    Mata kuliah <strong>Computational Thinking (CT)</strong> memberikan pemahaman mengenai
+                    proses berpikir sistematis dalam merumuskan persoalan dan menentukan solusi yang efektif,
+                    efisien, serta optimal. CT tidak hanya berkaitan dengan penggunaan komputer atau kemampuan 
+                    pemrograman, tetapi merupakan pola berpikir yang dapat digunakan untuk menyelesaikan berbagai 
+                    permasalahan dalam kehidupan sehari-hari maupun dalam pembelajaran.
+                    Sebagai calon guru Informatika, pemahaman mengenai CT menjadi penting karena kemampuan berpikir 
+                    komputasional perlu diterapkan dalam proses pembelajaran dan disesuaikan dengan karakteristik 
+                    serta jenjang peserta didik. Melalui mata kuliah ini, saya mempelajari bagaimana CT dapat 
+                    digunakan dalam problem solving, literasi dan numerasi, projek, serta diintegrasikan ke dalam
+                    mata pelajaran. Pembelajaran dalam mata kuliah ini juga membantu saya memahami bahwa CT bukan 
+                    sekadar konsep teoritis, tetapi perlu dilatih dan diterapkan melalui berbagai permasalahan dan
+                    aktivitas pembelajaran. Dengan demikian, pengalaman selama mengikuti mata kuliah Computational 
+                    Thinking menjadi bagian penting dalam membangun kemampuan saya sebagai calon guru untuk merancang
+                    pembelajaran yang mendorong peserta didik berpikir secara logis, sistematis, dan mampu menemukan 
+                    solusi terhadap permasalahan yang dihadapi.
+                </p>
+            </div>
+        </section>
 
+        <!-- =====================================================
+        TOPIK PEMBELAJARAN
+        ===================================================== -->
 
+        <section class="section-muted">
 
-<!-- =====================================================
-     PENDAHULUAN / INTISARI MATA KULIAH
-     ===================================================== -->
+            <div class="section-heading">
+                <p class="eyebrow">TOPIK PEMBELAJARAN</p>
+                <h2>Topik dan Artefak</h2>
+                <p>
+                    Dokumentasi setiap topik pembelajaran beserta
+                    LK atau tugas yang dikerjakan.
+                </p>
+            </div>
 
-<section>
+            <!-- =================================================
+                 TOPIK 1
+                 ================================================= -->
 
-    <div class="section-heading">
+            <details class="topic-accordion" open>
 
-        <p class="eyebrow">
-            PENDAHULUAN
-        </p>
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">01</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 1</p>
+                            <h3>Pendalaman Pemahaman CT</h3>
+                        </div>
+                    </div>
+                </summary>
 
-        <h2>
-            Intisari Mata Kuliah
-        </h2>
+                <div class="topic-content">
 
-    </div>
-
-
-    <div class="info-box">
-
-        <h3>
-            🧠 Computational Thinking
-        </h3>
-
-        <p>
-            Pendahuluan Mata Kuliah Computational Thinking
-
-Mata kuliah **Computational Thinking (CT)** memberikan pemahaman mengenai proses berpikir sistematis dalam merumuskan persoalan dan menentukan solusi yang efektif, efisien, serta optimal. CT tidak hanya berkaitan dengan penggunaan komputer atau kemampuan pemrograman, tetapi merupakan pola berpikir yang dapat digunakan untuk menyelesaikan berbagai permasalahan dalam kehidupan sehari-hari maupun dalam pembelajaran.
-
-Sebagai calon guru Informatika, pemahaman mengenai CT menjadi penting karena kemampuan berpikir komputasional perlu diterapkan dalam proses pembelajaran dan disesuaikan dengan karakteristik serta jenjang peserta didik. Melalui mata kuliah ini, saya mempelajari bagaimana CT dapat digunakan dalam problem solving, literasi dan numerasi, projek, serta diintegrasikan ke dalam mata pelajaran.
-
-Pembelajaran dalam mata kuliah ini juga membantu saya memahami bahwa CT bukan sekadar konsep teoritis, tetapi perlu dilatih dan diterapkan melalui berbagai permasalahan dan aktivitas pembelajaran. Dengan demikian, pengalaman selama mengikuti mata kuliah Computational Thinking menjadi bagian penting dalam membangun kemampuan saya sebagai calon guru untuk merancang pembelajaran yang mendorong peserta didik berpikir secara logis, sistematis, dan mampu menemukan solusi terhadap permasalahan yang dihadapi.
-
-        </p>
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     TOPIK PEMBELAJARAN
-     ===================================================== -->
-
-<section class="section-muted">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            TOPIK PEMBELAJARAN
-        </p>
-
-        <h2>
-            Topik dan Artefak
-        </h2>
-
-        <p>
-            Dokumentasi setiap topik pembelajaran beserta
-            LK atau tugas yang dikerjakan.
-        </p>
-
-    </div>
-
-
-
-    <!-- =================================================
-         TOPIK 1
-         ================================================= -->
-
-    <details class="topic-accordion" open>
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    01
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 1
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini membahas konsep dasar CT, perbedaan CT dengan ICT, digital literacy, dan Informatika, serta 
+                        miskonsepsi yang terjadi di masyarakat. Mahasiswa diajak memahami empat fondasi CT yang tidak terpisahkan: 
+                        dekomposisi, abstraksi, berpikir algoritmik, dan pengenalan pola, serta disposisi CT pada permasalahan sehari-hari.
                     </p>
-
-                    <h3>
-                        Pendalaman Pemahaman CT
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Pada topik ini, mahasiswa mempelajari konsep dasar Computational Thinking (CT) serta memahami perannya sebagai pendekatan dalam memecahkan masalah di era digital yang kompleks dan penuh ketidakpastian. Pembelajaran mencakup pemahaman mengenai empat fondasi utama CT, yaitu dekomposisi, abstraksi, berpikir algoritmik, serta pengenalan pola, sekaligus mengidentifikasi penerapannya dalam permasalahan sehari-hari. Topik ini juga membantu mahasiswa membangun pemahaman yang tepat mengenai CT dan membedakannya dari konsep lain seperti TIK, literasi digital, dan Informatika.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 1_Pengenalan CT dalam kehidupan sehari-hari   
-                         </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1sRweO35I8pWi-laoCZ6oXPR4KUmge6g1/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 2 - Dekomposisi dan Abstraksi
-                        </h5>
-
-                        
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 3 - Berpikir Algoritmik dan Pengenalan Pola
-                        </h5>
-
-                       
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 4 - Penerapan CT dalam Kehidupan Sehari-hari
-                        </h5>
-
-                        
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 2
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    02
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 2
-                    </p>
-
-                    <h3>
-                        CT Dalam Problem Solving Persoalan Sehari - hari
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik 2 membahas penerapan Computational Thinking (CT) dalam problem solving untuk menghasilkan solusi yang efektif dan efisien. Mahasiswa dilatih menyelesaikan persoalan melalui empat fondasi CT, menggali dan menstrukturkan informasi, serta mengomunikasikan proses berpikir dalam menyelesaikan masalah. Pembelajaran menggunakan pendekatan flipped learning dengan latihan soal sederhana, termasuk Tantangan Bebras dan PISA/AKM, yang berkaitan dengan kehidupan sehari-hari.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 5_Penerapan CT dalam soal Bebras dan Umpan balik dari kelompok lain
-                        </h5>
 
                     
 
+                    <!-- SATU TOMBOL per TOPIK -->
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1swFesul-JN9H4dUG5xAwtZVHB2_aMRm_?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 1
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja  dalam satu folder Google Drive
+                        </p>
                     </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1x8ytamUM8r1MiqHfATPEq3_NlQcNxBIH/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
 
                 </div>
 
-            </div>
+            </details>
 
-        </div>
+            <!-- =================================================
+                 TOPIK 2
+                 ================================================= -->
 
-    </details>
+            <details class="topic-accordion">
 
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">02</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 2</p>
+                            <h3>CT Dalam Problem Solving Persoalan Sehari - hari</h3>
+                        </div>
+                    </div>
+                </summary>
 
+                <div class="topic-content">
 
-    <!-- =================================================
-         TOPIK 3
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    03
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 3
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 2 membahas penerapan Computational Thinking (CT) dalam problem solving untuk menghasilkan solusi yang 
+                        efektif dan efisien. Mahasiswa dilatih menyelesaikan persoalan melalui empat fondasi CT, menggali dan menstrukturkan
+                         informasi, serta mengomunikasikan proses berpikir dalam menyelesaikan masalah. Pembelajaran menggunakan pendekatan
+                          flipped learning dengan latihan soal sederhana, termasuk Tantangan Bebras dan PISA/AKM, yang berkaitan dengan kehidupan sehari-hari.
                     </p>
 
-                    <h3>
-                        CT Dalam Problem Solving Pada Literasi dan Numerasi
-                    </h3>
+                    
 
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik 3 membahas penerapan Computational Thinking (CT) dalam problem solving pada bidang literasi dan numerasi, khususnya melalui persoalan dalam PISA dan AKM. Mahasiswa dilatih menerapkan empat fondasi CT untuk menggali, menstrukturkan, menemukan solusi, serta mengomunikasikan proses berpikir secara efektif. Penerapan CT juga diperluas pada berbagai bidang, yaitu literasi membaca, numerasi, sains, dan finansial. Pembelajaran menggunakan pendekatan flipped learning, dengan kegiatan belajar mandiri yang kemudian dilanjutkan melalui diskusi, koreksi, dan pemberian masukan bersama rekan.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 6 Menyelesaikan Soal PISA
-                        </h5>
-
-
-
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1OUNmaVJiz2GNa4QeGcurAaGum_Xar_ZA?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 2
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
                     </div>
 
-                    <a
-                        href="https://drive.google.com/file/d/1-_kiyqfjBLeKj1EGHzQnmMxq8E4HG204/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
                 </div>
 
-<div class="task-item">
+            </details>
 
-                    <div>
+            <!-- =================================================
+                 TOPIK 3
+                 ================================================= -->
 
-                        <h5>
-                            LK 7_DISKUSI ANTAR KELOMPOK
-                        </h5>
+            <details class="topic-accordion">
 
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">03</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 3</p>
+                            <h3>CT Dalam Problem Solving Pada Literasi dan Numerasi</h3>
+                        </div>
                     </div>
+                </summary>
 
-                    <a
-                        href="https://drive.google.com/file/d/1ibQ_tvXVbcFeJCBXdM_zz5M9Av0UD-ta/view?usp=drive_link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
+                <div class="topic-content">
 
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 4
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    04
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 4
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 3 membahas penerapan Computational Thinking (CT) dalam problem solving pada bidang literasi dan numerasi, 
+                        khususnya melalui persoalan dalam PISA dan AKM. Mahasiswa dilatih menerapkan empat fondasi CT untuk menggali, 
+                        menstrukturkan, menemukan solusi, serta mengomunikasikan proses berpikir secara efektif. Penerapan CT juga diperluas
+                         pada berbagai bidang, yaitu literasi membaca, numerasi, sains, dan finansial. Pembelajaran menggunakan pendekatan 
+                         flipped learning, dengan kegiatan belajar mandiri yang kemudian dilanjutkan melalui diskusi, koreksi, dan pemberian
+                          masukan bersama rekan.
                     </p>
 
-                    <h3>
-                        CT Dalam Kurikulum
-                    </h3>
+                    
 
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik 4 membahas Computational Thinking (CT) dalam Kurikulum Merdeka, termasuk posisi dan perannya dalam kurikulum nasional serta kerangka kompetensi global. Mahasiswa mempelajari capaian pembelajaran CT pada setiap fase, keterkaitannya dengan Informatika, Berpikir Komputasional, Koding, dan Kecerdasan Artifisial dari jenjang K7 hingga K12. Topik ini juga mengkaji bagaimana CT dapat diintegrasikan ke berbagai bidang pembelajaran serta pentingnya CT sebagai bagian dari literasi dan kompetensi abad ke-21 dalam konteks global.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 8_PERSAMAAN DAN PERBEDAAN BEBRAS & PISA_AKM
-                        </h5>
-
-                        
-
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1EtxU6HYOFRfK0hmONrQMac4YOV3qslpO?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 3
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja  dalam satu folder Google Drive
+                        </p>
                     </div>
 
-                    <a
-                        href="https://drive.google.com/file/d/1fzYBanTKFUWc5C-srhXUWfFPkWq269Br/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
                 </div>
 
-              <div class="task-item">
+            </details>
 
-                    <div>
+            <!-- =================================================
+                 TOPIK 4
+                 ================================================= -->
 
-                        <h5>
-                            LK 9_Pendalaman Pemahaman Capaian Pembelajaran Computational Thinking
-                        </h5>
+            <details class="topic-accordion">
 
-                        
-
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">04</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 4</p>
+                            <h3>CT Dalam Kurikulum</h3>
+                        </div>
                     </div>
+                </summary>
 
-                    <a
-                        href="https://drive.google.com/file/d/1fzYBanTKFUWc5C-srhXUWfFPkWq269Br/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
+                <div class="topic-content">
 
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 10_Pemaknaan CP CT dalam Kurikulum Nasional
-                        </h5>
-
-                        
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1XA_7fsDU5XMIGUJgNCaO9nweqs8UZLl_/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 5
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    05
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 5
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 4 membahas Computational Thinking (CT) dalam Kurikulum Merdeka, 
+                        termasuk posisi dan perannya dalam kurikulum nasional serta kerangka kompetensi global. 
+                        Mahasiswa mempelajari capaian pembelajaran CT pada setiap fase, keterkaitannya dengan Informatika, 
+                        Berpikir Komputasional, Koding, dan Kecerdasan Artifisial dari jenjang K7 hingga K12. Topik ini juga mengkaji 
+                        bagaimana CT dapat diintegrasikan ke berbagai bidang pembelajaran serta pentingnya CT sebagai bagian dari literasi 
+                        dan kompetensi abad ke-21 dalam konteks global.
                     </p>
 
-                    <h3>
-                        CT dan Projek
-                    </h3>
+                    
 
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik 5 membahas integrasi Computational Thinking (CT) dalam projek STEM/STEAM. Mahasiswa belajar merancang ulang projek STEM dengan menerapkan empat fondasi CT, yaitu dekomposisi, pengenalan pola, abstraksi, dan algoritma.
-
-Integrasi CT dalam projek membantu peserta didik menyelesaikan masalah secara sistematis, logis, efektif, dan efisien. Pendekatan STEM/STEAM juga memungkinkan pembelajaran lintas mata pelajaran serta pemanfaatan teknologi dan kreativitas dalam menghasilkan solusi.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 11 - Projek STEM sebelum Diintegrasikan dengan CT
-                        </h5>
-
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1Dz3j_N8jCRTflMN5dPbXoUorPd1hMjTN?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 4
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
                     </div>
 
-                    <a
-                        href="https://drive.google.com/file/d/1QTq0tQZpngmWZcYI0AgFF2YhBt7yKWB0/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
                 </div>
 
-<div class="task-item">
+            </details>
 
-                    <div>
+            <!-- =================================================
+                 TOPIK 5
+                 ================================================= -->
 
-                        <h5>
-                            LK 12 - Projek STEM setelah Diintegrasikan dengan CT
-                        </h5>
+            <details class="topic-accordion">
 
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">05</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 5</p>
+                            <h3>CT dan Projek</h3>
+                        </div>
                     </div>
+                </summary>
 
-                    <a
-                        href="https://drive.google.com/file/d/1-rOyjD4crBCeBO_QpNunoNB4o9MTP2ML/view?usp=drive_link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
+                <div class="topic-content">
 
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 13 - Perbedaan  Projek  STEM sebelum dan sesudah Diintegrasikan dengan CT
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/14LoH-J_TYystCLeOu5DTtQtMH_iHQdWu/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 14 - Catatan Perbaikan Presentasi
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1IhbgIZde7YOYW3UfHVj1KXfUYNZEqKSi/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 6
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    06
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 6
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 5 membahas integrasi Computational Thinking (CT) dalam projek STEM/STEAM. Mahasiswa belajar merancang ulang 
+                        projek STEM dengan menerapkan empat fondasi CT, yaitu dekomposisi, pengenalan pola, abstraksi, dan algoritma.
+                        Integrasi CT dalam projek membantu peserta didik menyelesaikan masalah secara sistematis, logis, efektif,
+                         dan efisien. Pendekatan STEM/STEAM juga memungkinkan pembelajaran lintas mata pelajaran serta pemanfaatan
+                          teknologi dan kreativitas dalam menghasilkan solusi.
                     </p>
 
-                    <h3>
-                        Integrasi CT Dalam Mata Pelajaran
-                    </h3>
+                   
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1667UoaHZeiG7fsJ_kRKOXniMJeKToBtq?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 5
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
 
                 </div>
 
+            </details>
+
+            <!-- =================================================
+                 TOPIK 6
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">06</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 6</p>
+                            <h3>Integrasi CT Dalam Mata Pelajaran</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 6 membahas integrasi Computational Thinking (CT) ke dalam mata pelajaran sesuai 
+                        jenjang dan bidang yang akan diajarkan. Mahasiswa belajar memilih, menganalisis, merancang, 
+                        dan menerapkan CT pada materi serta tujuan pembelajaran tertentu.
+                        Integrasi CT perlu mempertimbangkan fase peserta didik, kompleksitas masalah, 
+                        proses penyelesaian masalah, bidang ilmu, strategi pembelajaran, dan penggunaan 
+                        komputer/komputasi. Melalui kerja kelompok, calon guru dilatih untuk merancang pembelajaran 
+                        yang mengintegrasikan CT secara sesuai dengan karakteristik mata pelajaran dan peserta didik.
+                    </p>
+
+                    
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/12kXdAhwsy4P24xOg2e-A9_QbVXXXJxC1?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 6
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+
+<details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">06</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 7</p>
+                            <h3>Restrukturisasi Portofolio</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini memberi panduan terkait restrukturisasi komponen-komponen portofolio yang
+                         sudah ditabung sejak pertemuan pertama. Terdiri dari dua pertemuan: 
+                        penjelasan restrukturisasi portofolio dan sesi pameran portofolio serta penilaian.
+                    </p>
+
+                    
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1DW74kWFHhkAQas5ero1KBFpM8qjt065_?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 7
+                        </a>
+                        <p class="drive-note">
+                            Akses Lembar Restrukturisasi portofolio dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+        </section>
+
+        <!-- =====================================================
+        REFLEKSI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+                <p class="eyebrow">REFLEKSI MATA KULIAH</p>
+                <h2>LK2 – Seminar Hasil</h2>
+                <p>
+                    Dokumentasi refleksi hasil pembelajaran
+                    selama mengikuti mata kuliah Computational Thinking.
+                </p>
             </div>
 
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik 6 membahas integrasi Computational Thinking (CT) ke dalam mata pelajaran sesuai jenjang dan bidang yang akan diajarkan. Mahasiswa belajar memilih, menganalisis, merancang, dan menerapkan CT pada materi serta tujuan pembelajaran tertentu.
-
-Integrasi CT perlu mempertimbangkan fase peserta didik, kompleksitas masalah, proses penyelesaian masalah, bidang ilmu, strategi pembelajaran, dan penggunaan komputer/komputasi. Melalui kerja kelompok, calon guru dilatih untuk merancang pembelajaran yang mengintegrasikan CT secara sesuai dengan karakteristik mata pelajaran dan peserta didik.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 15 - Refleksi kaitan makalah “Bringing computational thinking to K-12” pada mata pelajaran yang diampu mahasiswa
-                        </h5>
-
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1OYthhv2gU1KZyZ5AUzSMuJhMLveWny4S/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <h3>Dokumentasi Refleksi Mata Kuliah</h3>
+                    <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
                 </div>
-
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 16 - Integrasi CT dalam materi ajar
-                        </h5>
-
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1lMEC-c1nxINb0e5HAkMKCOeSUj5FkCtm/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
+                <div class="doc-card-body">
+                    <iframe src="https://docs.google.com/document/d/1TXS539Fvyl8ptQL7E5w5iQ2U2l1cpEtl/preview" title="Dokumentasi Refleksi Akhir Siklus" frameborder="0" allowfullscreen></iframe>
                 </div>
-
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 17 - Evaluasi integrasi CT dalam materi ajar 
-                        </h5>
-
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1fEJ23uE3-tMLccfZyUiLZ2gXIU3CdrNn/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 18 - Penarikan kesimpulan tentang integrasi CT dalam materi ajar 
-                        </h5>
-
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1qlskIZX4e4jiB5jUDxa15iAOkdM2PwuG/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
             </div>
 
-        </div>
+        </section>
 
-    </details>
+        <!-- =====================================================
+        NAVIGASI KEMBALI
+        ===================================================== -->
 
-</section>
-
-
-
-<!-- =====================================================
-     REFLEKSI MATA KULIAH
-     ===================================================== -->
-
-<section>
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            REFLEKSI MATA KULIAH
-        </p>
-
-        <h2>
-            LK2 – Seminar Hasil
-        </h2>
-
-        <p>
-            Dokumentasi refleksi hasil pembelajaran
-            selama mengikuti mata kuliah Computational Thinking.
-        </p>
-
-    </div>
-           
-
-<div class="doc-card">
-        <div class="doc-card-header">
-            <h3>Dokumentasi Refleksi Mata Kuliah</h3>
-            <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
-        </div>
-        <div class="doc-card-body">
-            <iframe src="https://docs.google.com/document/d/1TXS539Fvyl8ptQL7E5w5iQ2U2l1cpEtl/preview" title="Dokumentasi Refleksi Akhir Siklus" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     NAVIGASI KEMBALI
-     ===================================================== -->
-
-<section class="section-muted">
-
-
-    <div class="hero-actions">
-
-        <a
-            href="../../index.html#semester1"
-            class="btn btn-outline">
-
-            ← Kembali ke Semester 1
-
-        </a>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =====================================================
-     BACK TO TOP
-     ===================================================== -->
-
-<button
-    id="backToTop"
-    class="back-to-top"
-    type="button"
-    aria-label="Kembali ke atas">
-
-    ↑
-
-</button>
-
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer>
-
-    <div class="footer-grid">
-
-        <!-- KOLOM 1: BRAND -->
-        <div>
-            <h2>PPG E - Portofolio</h2>
-            <p>
-                Dokumentasi perjalanan dan pengembangan profesional 
-                Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan 
-                Informatika di Universitas Negeri Malang.
-            </p>
-        </div>
-
-        <!-- KOLOM 2: NAVIGASI UTAMA -->
-        <div>
-            <h3>Navigasi</h3>
-            <div class="footer-links">
-                <a href="#semester1">Semester 1</a>
-                <a href="#semester2">Semester 2</a>
-                <a href="#pengembangan">Pengembangan Diri</a>
-                <a href="tentang-saya.html">Tentang Saya</a>
-            </div>
-        </div>
-
-        <!-- KOLOM 3: KONTAK (PAKAI EMOJI) -->
-        <div>
-            <h3>Terhubung</h3>
-            <div class="footer-links">
-                <a href="mailto:siska.yulia.2531537@students.um.ac.id">
-                    ✉️ siska.yulia.2531537@students.um.ac.id
-                </a>
-                <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
-                    📷 @siskayuraa
-                </a>
-                <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
-                    🏛️ Universitas Negeri Malang
+        <section class="section-muted">
+            <div class="hero-actions">
+                <a href="../../index.html#semester1" class="btn-outline">
+                    ← Kembali ke Semester 1
                 </a>
             </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+    BACK TO TOP
+    ===================================================== -->
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Kembali ke atas">
+        ↑
+    </button>
+
+    <!-- =====================================================
+    FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h2>PPG E - Portofolio</h2>
+                <p>
+                    Dokumentasi perjalanan dan pengembangan profesional
+                    Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan
+                    Informatika di Universitas Negeri Malang.
+                </p>
+            </div>
+
+            <div>
+                <h3>Navigasi</h3>
+                <div class="footer-links">
+                    <a href="#semester1">Semester 1</a>
+                    <a href="#semester2">Semester 2</a>
+                    <a href="#pengembangan">Pengembangan Diri</a>
+                    <a href="tentang-saya.html">Tentang Saya</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Terhubung</h3>
+                <div class="footer-links">
+                    <a href="mailto:siska.yulia.2531537@students.um.ac.id">
+                        ✉️ siska.yulia.2531537@students.um.ac.id
+                    </a>
+                    <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
+                        📷 @siskayuraa
+                    </a>
+                    <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
+                        🏛️ Universitas Negeri Malang
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <div class="footer-bottom">
+            <p>
+                © <span data-current-year>2026</span>
+                Siska Yulia Rahmawati •
+                PPG E - Portofolio
+            </p>
+        </div>
 
-    <div class="footer-bottom">
-        <p>
-            © <span data-current-year>2026</span> 
-            Siska Yulia Rahmawati • 
-            PPG E - Portofolio
-        </p>
-    </div>
+    </footer>
 
-</footer>
-
-<!-- JAVASCRIPT -->
-
-<script src="../../assets/js/script.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="../../assets/js/script.js"></script>
 
 </body>
 

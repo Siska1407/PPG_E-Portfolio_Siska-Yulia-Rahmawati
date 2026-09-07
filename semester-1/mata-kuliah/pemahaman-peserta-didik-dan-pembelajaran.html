@@ -4,810 +4,567 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Portofolio Mata Kuliah Pemahaman Peserta Didik & Pembelajaran - Siska Yulia Rahmawati">
-
+    <meta name="description" content="Portofolio Mata Kuliah Pemahaman Peserta Didik & Pembelajaran - Siska Yulia Rahmawati">
     <title>Pemahaman Peserta Didik & Pembelajaran | E-Portfolio</title>
 
     <!-- CSS UTAMA -->
     <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
 
+    <style>
+        /* =====================================================
+           FOLDER-VIEW : satu tombol per topik (seperti CT)
+           ===================================================== */
+
+        .folder-container {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .folder-container .drive-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .folder-container .drive-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .folder-container .drive-btn:active {
+            transform: translateY(0px);
+        }
+
+        .folder-container .drive-note {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* dark mode */
+        body.dark-mode .folder-container {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .folder-container .drive-btn {
+            background: #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        body.dark-mode .folder-container .drive-btn:hover {
+            background: #60a5fa;
+        }
+
+        body.dark-mode .folder-container .drive-note {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        /* =====================================================
+           DOKUMEN REFLEKSI (doc-card)
+           ===================================================== */
+
+        .doc-card {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card-header {
+            padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+        }
+
+        .doc-card-header h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.15rem;
+        }
+
+        .doc-card-header p {
+            margin: 0;
+            color: var(--text-muted, #64748b);
+            font-size: 0.9rem;
+        }
+
+        .doc-card-body {
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .doc-card-body iframe {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color, #e2e8f0);
+            background: white;
+        }
+
+        body.dark-mode .doc-card {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .doc-card-header p {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        body.dark-mode .doc-card-body iframe {
+            border-color: var(--border-dark, #334155);
+            background: #0f172a;
+        }
+
+        @media (max-width: 640px) {
+            .doc-card-body iframe {
+                height: 280px;
+            }
+
+            .folder-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .folder-container .drive-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* spacing antar topik */
+        .topic-accordion+.topic-accordion {
+            margin-top: 1.25rem;
+        }
+
+        .hero-actions {
+            margin-top: 1.5rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border: 1.5px solid var(--border-color, #cbd5e1);
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-primary, #0f172a);
+            text-decoration: none;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-hover, #f1f5f9);
+            border-color: var(--text-primary, #0f172a);
+        }
+
+        body.dark-mode .btn-outline {
+            border-color: var(--border-dark, #475569);
+            color: var(--text-light, #f1f5f9);
+        }
+
+        body.dark-mode .btn-outline:hover {
+            background: var(--bg-hover-dark, #1e293b);
+            border-color: var(--text-light, #f1f5f9);
+        }
+
+        /* info-box (sama seperti CT) */
+        .info-box {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+        }
+
+        body.dark-mode .info-box {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+    </style>
+</head>
 
 <body>
 
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
+    <!-- =====================================================
+    HEADER
+    ===================================================== -->
 
-<header class="site-header">
-    <div class="nav-container">
-        <a class="brand" href="../../index.html">
-            Siska Yulia Rahmawati
-        </a>
+    <header class="site-header">
+        <div class="nav-container">
+            <a class="brand" href="../../index.html">
+                Siska Yulia Rahmawati
+            </a>
 
-        <nav class="nav-menu" aria-label="Navigasi utama">
-            <a href="../../index.html#hero">Home</a>
-            <a href="../../index.html#semester1">Semester 1</a>
-            <a href="../../index.html#semester2">Semester 2</a>
-            <a href="../../index.html#pengembangan">Pengembangan Diri</a>
-            <a href="../../tentang-saya.html">Tentang Saya</a>
-        </nav>
+            <nav class="nav-menu" aria-label="Navigasi utama">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#semester1">Semester 1</a>
+                <a href="../../index.html#semester2">Semester 2</a>
+                <a href="../../index.html#pengembangan">Pengembangan Diri</a>
+                <a href="../../tentang-saya.html">Tentang Saya</a>
+            </nav>
 
-        <div class="nav-actions">
-            <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
-                ☾
-            </button>
+            <div class="nav-actions">
+                <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
+                    ☾
+                </button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+
+    <!-- =====================================================
+    MAIN
+    ===================================================== -->
+
+    <main>
+
+        <!-- =====================================================
+        HERO
+        ===================================================== -->
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
+                <h1>Pemahaman Peserta Didik &amp; Pembelajaran</h1>
+                <p class="hero-text">
+                    Dokumentasi proses pembelajaran, topik,
+                    lembar kerja, tugas, artefak, dan refleksi
+                    selama mengikuti mata kuliah Pemahaman Peserta Didik &amp; Pembelajaran.
+                </p>
+                <div class="hero-actions">
+                    <a href="daftar-mata-kuliah.html" class="btn-outline">← Kembali ke Mata Kuliah</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+        PENDAHULUAN / INTISARI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+            <div class="section-heading">
+                <p class="eyebrow">PENDAHULUAN</p>
+                <h2>Intisari Mata Kuliah</h2>
+            </div>
+
+            <div class="info-box">
+                <h3>📖 Pemahaman Peserta Didik &amp; Pembelajaran</h3>
+                <p>
+                    Mata kuliah ini membekali calon guru PPG dengan kemampuan memahami peserta didik secara 
+                    holistik (perkembangan kognitif, sosial-emosional, moral, fisik, gaya belajar, perbedaan individu,
+                     serta konteks sosial budaya) sebagai dasar merancang pembelajaran efektif dan berpusat pada peserta
+                      didik melalui pendekatan Pembelajaran Mendalam, dengan prinsip konstruktif, humanistik, dan 
+                      berdiferensiasi. Peserta dilatih mengidentifikasi kebutuhan belajar melalui observasi, asesmen,
+                       dan refleksi, yang diaplikasikan dalam pembelajaran mikro serta terintegrasi dengan PPL terbimbing. 
+                       Melalui studi kasus, simulasi, dan diskusi kolaboratif, lulusan diharapkan mampu menciptakan 
+                       lingkungan belajar yang inklusif, menghargai keberagaman, serta mendukung kemandirian dan 
+                       perkembangan optimal setiap peserta didik.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================
+        TOPIK PEMBELAJARAN
+        ===================================================== -->
+
+        <section class="section-muted">
+
+            <div class="section-heading">
+                <p class="eyebrow">TOPIK PEMBELAJARAN</p>
+                <h2>Topik dan Artefak</h2>
+                <p>
+                    Dokumentasi setiap topik pembelajaran beserta
+                    LK atau tugas yang dikerjakan.
+                </p>
+            </div>
+
+            <!-- =================================================
+                 TOPIK 1
+                 ================================================= -->
+
+            <details class="topic-accordion" open>
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">01</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 1</p>
+                            <h3>Memahami Peserta Didik Secara Holistik</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini merupakan fondasi awal mata kuliah yang akan dilaksanakan dalam 4 pertemuan 
+                        dengan moda Blended Learning. Inti dari topik ini adalah membekali mahasiswa PPG agar 
+                        mampu menjadikan teori perkembangan peserta didik (kognitif, sosial-emosional, moral, dan fisik)
+                         sebagai landasan utama dalam merancang pembelajaran yang relevan dan kontekstual.
+                    </p>
 
 
+                    <!-- SATU TOMBOL per TOPIK (folder) -->
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1MauiaIp0pRhg5UNmi90FNpWSoywlp4Ha?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 1
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
 
-<!-- =====================================================
-     MAIN
-     ===================================================== -->
+                </div>
 
-<main>
+            </details>
+
+            <!-- =================================================
+                 TOPIK 2
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">02</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 2</p>
+                            <h3>Perbedaan Karakteristik Peserta Didik</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini berfokus pada analisis mendalam tentang keragaman karakteristik individu 
+                        peserta didik, yang menjadi fondasi penting dalam menciptakan pengalaman belajar yang 
+                        adaptif dan inklusif. Berbeda dengan Topik 1 yang menekankan teori perkembangan secara umum 
+                        (kognitif, sosial-emosional, moral, dan fisik), Topik 2 mengarahkan mahasiswa untuk secara 
+                        spesifik mengidentifikasi dan menganalisis perbedaan-perbedaan unik yang ada di dalam kelas.
+                    </p>
 
 
-<!-- =====================================================
-     HERO
-     ===================================================== -->
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1g8tv48niRSzF4KA6hPsG9CD_wrBSXcIO?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 2
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
 
-<section class="hero">
+                </div>
 
-    <div class="hero-content">
+            </details>
 
-        <p class="eyebrow">
-            📚 SEMESTER 1 • MATA KULIAH
-        </p>
+            <!-- =================================================
+                 TOPIK 3
+                 ================================================= -->
 
-        <h1>
-            Pemahaman Peserta Didik & Pembelajaran
-        </h1>
+            <details class="topic-accordion">
 
-        <p class="hero-text">
-            Dokumentasi proses pembelajaran, topik,
-            lembar kerja, tugas, artefak, dan refleksi
-            selama mengikuti mata kuliah Pemahaman Peserta Didik & Pembelajaran.
-        </p>
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">03</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 3</p>
+                            <h3>Pembelajaran Berpusat Pada Peserta Didik</h3>
+                        </div>
+                    </div>
+                </summary>
 
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini mengarahkan mahasiswa untuk memasuki ranah pendekatan dan strategi 
+                        pembelajaran dengan bertumpu pada konsep-konsep teori belajar yang humanis dan konstruktif. 
+                        Jika Topik 1 dan 2 lebih berfokus pada siapa peserta didik (karakteristik dan perbedaannya), 
+                        maka Topik 3 berfokus pada bagaimana merancang pembelajaran yang benar-benar berpusat pada 
+                        mereka, dengan tujuan akhir menciptakan pengalaman belajar yang memuliakan peserta didik 
+                        (menghargai martabat, potensi, dan keunikan masing-masing individu).
+                    </p>
+
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1BwX5OqiHkI4UyMCk-QcNsxRaUPLs-kMQ?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 3
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 4
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">04</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 4</p>
+                            <h3>Profiling Peserta Didik</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik ini menggeser fokus dari pemahaman teoritis dan perancangan pembelajaran secara umum 
+                        menuju langkah diagnostik dan adaptif yang konkret di dalam kelas. Inti dari topik ini 
+                        adalah membekali mahasiswa agar mampu menggunakan asesmen awal (asesmen diagnostik) 
+                        sebagai instrumen kunci untuk memetakan kebutuhan belajar peserta didik, yang kemudian 
+                        menjadi fondasi dalam merancang strategi pembelajaran yang responsif terhadap keberagaman.
+                    </p>
+
+                   
+
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1d0ccWpkwaDe1sNy6_3Qj3Ds6wL91-5F_?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 4
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+        </section>
+
+        <!-- =====================================================
+        REFLEKSI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+                <p class="eyebrow">REFLEKSI MATA KULIAH</p>
+                <h2>LK2 – Seminar Hasil</h2>
+                <p>
+                    Dokumentasi refleksi hasil pembelajaran
+                    selama mengikuti mata kuliah Pemahaman Peserta Didik &amp; Pembelajaran.
+                </p>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <h3>Dokumentasi Refleksi Mata Kuliah</h3>
+                    <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
+                </div>
+                <div class="doc-card-body">
+                    <iframe src="https://docs.google.com/document/d/1NqFzmiUFwSTy5RjiwyRzmx9LxqsU1uVu/preview" title="Dokumentasi Refleksi Akhir Siklus" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+        NAVIGASI KEMBALI
+        ===================================================== -->
+
+        <section class="section-muted">
             <div class="hero-actions">
-            <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PENDAHULUAN / INTISARI MATA KULIAH
-     ===================================================== -->
-
-<section>
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            PENDAHULUAN
-        </p>
-
-        <h2>
-            Intisari Mata Kuliah
-        </h2>
-
-    </div>
-
-
-    <div class="info-box">
-
-        <h3>
-            📖 Pemahaman Peserta Didik & Pembelajaran
-        </h3>
-
-        <p>
-            Mata kuliah ini membekali calon guru PPG dengan kemampuan memahami peserta didik secara holistik (perkembangan kognitif, sosial-emosional, moral, fisik, gaya belajar, perbedaan individu, serta konteks sosial budaya) sebagai dasar merancang pembelajaran efektif dan berpusat pada peserta didik melalui pendekatan Pembelajaran Mendalam, dengan prinsip konstruktif, humanistik, dan berdiferensiasi. Peserta dilatih mengidentifikasi kebutuhan belajar melalui observasi, asesmen, dan refleksi, yang diaplikasikan dalam pembelajaran mikro serta terintegrasi dengan PPL terbimbing. Melalui studi kasus, simulasi, dan diskusi kolaboratif, lulusan diharapkan mampu menciptakan lingkungan belajar yang inklusif, menghargai keberagaman, serta mendukung kemandirian dan perkembangan optimal setiap peserta didik.
-        </p>
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     TOPIK PEMBELAJARAN
-     ===================================================== -->
-
-<section class="section-muted">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            TOPIK PEMBELAJARAN
-        </p>
-
-        <h2>
-            Topik dan Artefak
-        </h2>
-
-        <p>
-            Dokumentasi setiap topik pembelajaran beserta
-            LK atau tugas yang dikerjakan.
-        </p>
-
-    </div>
-
-
-
-    <!-- =================================================
-         TOPIK 1
-         ================================================= -->
-
-    <details class="topic-accordion" open>
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    01
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 1
-                    </p>
-
-                    <h3>
-                        Memahami Peserta Didik Secara Holistik
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik ini merupakan fondasi awal mata kuliah yang akan dilaksanakan dalam 4 pertemuan dengan moda Blended Learning. Inti dari topik ini adalah membekali mahasiswa PPG agar mampu menjadikan teori perkembangan peserta didik (kognitif, sosial-emosional, moral, dan fisik) sebagai landasan utama dalam merancang pembelajaran yang relevan dan kontekstual.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 1A - Diskusi Pemecahan Masalah   
-                         </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1jMqhavDfkojdsWqE_YVypDrjXcIMr3mk/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 1B - Menyusun Peta Konsep atau Peta Pikiran
-                        </h5>
-
-                        
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/11_d-In_KxmC2JyOXTaMi1kn81BXAQ3AW/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 1C - Refleksi dan Tindak Lanjut
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1fZlT5hfwWqaTRFE1c_-OVTDsLSMCI1jV/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 2
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    02
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 2
-                    </p>
-
-                    <h3>
-                        Perbedaan Karakteristik Peserta Didik
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik ini berfokus pada analisis mendalam tentang keragaman karakteristik individu peserta didik, 
-                yang menjadi fondasi penting dalam menciptakan pengalaman belajar yang adaptif dan inklusif. 
-                Berbeda dengan Topik 1 yang menekankan teori perkembangan secara umum (kognitif, sosial-emosional, moral, dan fisik), 
-                Topik 2 mengarahkan mahasiswa 
-                untuk secara spesifik mengidentifikasi dan menganalisis perbedaan-perbedaan unik yang ada di dalam kelas.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 2C - Diskusi Penyelesaian Masalah 
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1_KvQMtzGZ1A39mhV99xO2Zy8Z-jFlAy2/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                    <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            Eksplorasi Masalah dalam Mengenal Perbedaan Karakteristik Peserta Didik 
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1zycgcQkBo4t4Hm4OmPE9m3hMLyme3eaS/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 2D - Sintesis  
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1MemTggT--0ym9sJAI0bThH7gcFimNwBn/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                             LK 2E - Refleksi dan Tindak Lanjut
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1DUZFtScJdck8ifFu3Hq9aYG-59Q7GSYK/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 3
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    03
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 3
-                    </p>
-
-                    <h3>
-                        Pembelajaran Berpusat Pada Peserta Didik
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik ini mengarahkan mahasiswa untuk memasuki ranah pendekatan dan strategi pembelajaran 
-                dengan bertumpu pada konsep-konsep teori belajar yang humanis dan konstruktif. 
-                Jika Topik 1 dan 2 lebih berfokus pada siapa peserta didik (karakteristik dan perbedaannya), 
-                maka Topik 3 berfokus pada bagaimana merancang pembelajaran yang benar-benar berpusat pada mereka,
-                 dengan tujuan akhir menciptakan pengalaman belajar yang memuliakan peserta didik 
-                 (menghargai martabat, potensi, dan keunikan masing-masing individu).
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 3A - Analisis Fish Bone
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1NrPQBdgQ2UzBVB17wIzw_PrhOJL_gUFD/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-<div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 3B - Sintesis
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1VfyqZBL5kx1hWmLgCMZEwZOg8OHHnD4w/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                            LK 3E - Refleksi Individu
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1Cn17PVSCDrmZ7dVpwxPA1vd_rDCwUdAC/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-    </details>
-
-
-
-    <!-- =================================================
-         TOPIK 4
-         ================================================= -->
-
-    <details class="topic-accordion">
-
-        <summary class="topic-summary">
-
-            <div class="topic-summary-main">
-
-                <span class="timeline-number">
-                    04
-                </span>
-
-                <div>
-
-                    <p class="eyebrow">
-                        TOPIK 4
-                    </p>
-
-                    <h3>
-                        Profiling Peserta Didik
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </summary>
-
-
-        <div class="topic-content">
-
-            <h4>
-                Deskripsi Topik
-            </h4>
-
-            <p>
-                Topik ini menggeser fokus dari pemahaman teoritis dan perancangan pembelajaran secara umum 
-                menuju langkah diagnostik dan adaptif yang konkret di dalam kelas. 
-                Inti dari topik ini adalah membekali mahasiswa agar mampu menggunakan asesmen awal (asesmen diagnostik) 
-                sebagai instrumen kunci untuk memetakan kebutuhan belajar peserta didik, 
-                yang kemudian menjadi fondasi dalam merancang strategi pembelajaran yang responsif terhadap keberagaman.
-            </p>
-
-
-            <h4>
-                📂 LK / Tugas
-            </h4>
-
-
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                           LK 4C - Diskusi Penyelesaian Kasus
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1g7zsnhIMrCI0yy8QP37E6PF-R9c1TePL/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-            </div>
-<div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                           LK 4A - Merancang Instrumen Awal
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/10bwXdvpinlv03eZD9OztFuzd7Dz95lzE/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-            </div>
-            <div class="task-list">
-
-                <div class="task-item">
-
-                    <div>
-
-                        <h5>
-                           LK 4B - Rekomendasi Desain Pembelajaran
-                        </h5>
-
-                    </div>
-
-                    <a
-                        href="https://drive.google.com/file/d/1wIvHjzbhy0IhYlj4T2GtsO6BBo42cTgA/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="artifact-btn">
-
-                        Lihat Artefak
-
-                    </a>
-
-                </div>
-
-            </div>
-        </div>
-
-    </details>
-
-<!-- =====================================================
-     REFLEKSI MATA KULIAH
-     ===================================================== -->
-
-<section>
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            REFLEKSI MATA KULIAH
-        </p>
-
-        <h2>
-            LK2 – Seminar Hasil
-        </h2>
-
-        <p>
-            Dokumentasi refleksi hasil pembelajaran
-            selama mengikuti mata kuliah Computational Thinking.
-        </p>
-
-    </div>
-           
-
-<div class="doc-card">
-        <div class="doc-card-header">
-            <h3>Dokumentasi Refleksi Mata Kuliah</h3>
-            <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
-        </div>
-        <div class="doc-card-body">
-            <iframe src="https://docs.google.com/document/d/1NqFzmiUFwSTy5RjiwyRzmx9LxqsU1uVu/preview"></iframe>
-        </div>
-    </div>
-
-</section>
-
-<!-- =====================================================
-     NAVIGASI KEMBALI
-     ===================================================== -->
-
-<section class="section-muted">
-
-
-    <div class="hero-actions">
-
-        <a
-            href="../../index.html#semester1"
-            class="btn btn-outline">
-
-            ← Kembali ke Semester 1
-
-        </a>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =====================================================
-     BACK TO TOP
-     ===================================================== -->
-
-<button
-    id="backToTop"
-    class="back-to-top"
-    type="button"
-    aria-label="Kembali ke atas">
-
-    ↑
-
-</button>
-
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer>
-
-    <div class="footer-grid">
-
-        <!-- KOLOM 1: BRAND -->
-        <div>
-            <h2>PPG E - Portofolio</h2>
-            <p>
-                Dokumentasi perjalanan dan pengembangan profesional 
-                Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan 
-                Informatika di Universitas Negeri Malang.
-            </p>
-        </div>
-
-        <!-- KOLOM 2: NAVIGASI UTAMA -->
-        <div>
-            <h3>Navigasi</h3>
-            <div class="footer-links">
-                <a href="#semester1">Semester 1</a>
-                <a href="#semester2">Semester 2</a>
-                <a href="#pengembangan">Pengembangan Diri</a>
-                <a href="tentang-saya.html">Tentang Saya</a>
-            </div>
-        </div>
-
-        <!-- KOLOM 3: KONTAK (PAKAI EMOJI) -->
-        <div>
-            <h3>Terhubung</h3>
-            <div class="footer-links">
-                <a href="mailto:siska.yulia.2531537@students.um.ac.id">
-                    ✉️ siska.yulia.2531537@students.um.ac.id
-                </a>
-                <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
-                    📷 @siskayuraa
-                </a>
-                <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
-                    🏛️ Universitas Negeri Malang
+                <a href="../../index.html#semester1" class="btn-outline">
+                    ← Kembali ke Semester 1
                 </a>
             </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+    BACK TO TOP
+    ===================================================== -->
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Kembali ke atas">
+        ↑
+    </button>
+
+    <!-- =====================================================
+    FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h2>PPG E - Portofolio</h2>
+                <p>
+                    Dokumentasi perjalanan dan pengembangan profesional
+                    Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan
+                    Informatika di Universitas Negeri Malang.
+                </p>
+            </div>
+
+            <div>
+                <h3>Navigasi</h3>
+                <div class="footer-links">
+                    <a href="#semester1">Semester 1</a>
+                    <a href="#semester2">Semester 2</a>
+                    <a href="#pengembangan">Pengembangan Diri</a>
+                    <a href="tentang-saya.html">Tentang Saya</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Terhubung</h3>
+                <div class="footer-links">
+                    <a href="mailto:siska.yulia.2531537@students.um.ac.id">
+                        ✉️ siska.yulia.2531537@students.um.ac.id
+                    </a>
+                    <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
+                        📷 @siskayuraa
+                    </a>
+                    <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
+                        🏛️ Universitas Negeri Malang
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <div class="footer-bottom">
+            <p>
+                © <span data-current-year>2026</span>
+                Siska Yulia Rahmawati •
+                PPG E - Portofolio
+            </p>
+        </div>
 
-    <div class="footer-bottom">
-        <p>
-            © <span data-current-year>2026</span> 
-            Siska Yulia Rahmawati • 
-            PPG E - Portofolio
-        </p>
-    </div>
+    </footer>
 
-</footer>
-
-<!-- JAVASCRIPT -->
-
-<script src="../../assets/js/script.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="../../assets/js/script.js"></script>
 
 </body>
 

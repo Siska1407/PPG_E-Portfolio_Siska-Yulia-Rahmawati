@@ -5,214 +5,572 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portofolio Mata Kuliah Filosofi Pendidikan & Pendidikan Nilai - Siska Yulia Rahmawati">
-    <title>Filosofi Pendidikan & Pendidikan Nilai | E - Portofolio</title>
+    <title>Filosofi Pendidikan & Pendidikan Nilai | E-Portfolio</title>
+
+    <!-- CSS UTAMA -->
     <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        /* =====================================================
+           FOLDER-VIEW : satu tombol per topik
+           ===================================================== */
+
+        .folder-container {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .folder-container .drive-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .folder-container .drive-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .folder-container .drive-btn:active {
+            transform: translateY(0px);
+        }
+
+        .folder-container .drive-note {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* dark mode */
+        body.dark-mode .folder-container {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .folder-container .drive-btn {
+            background: #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        body.dark-mode .folder-container .drive-btn:hover {
+            background: #60a5fa;
+        }
+
+        body.dark-mode .folder-container .drive-note {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        /* =====================================================
+           DOKUMEN REFLEKSI (doc-card)
+           ===================================================== */
+
+        .doc-card {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card-header {
+            padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+        }
+
+        .doc-card-header h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.15rem;
+        }
+
+        .doc-card-header p {
+            margin: 0;
+            color: var(--text-muted, #64748b);
+            font-size: 0.9rem;
+        }
+
+        .doc-card-body {
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .doc-card-body iframe {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color, #e2e8f0);
+            background: white;
+        }
+
+        body.dark-mode .doc-card {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        body.dark-mode .doc-card-header p {
+            color: var(--text-muted-light, #94a3b8);
+        }
+
+        body.dark-mode .doc-card-body iframe {
+            border-color: var(--border-dark, #334155);
+            background: #0f172a;
+        }
+
+        @media (max-width: 640px) {
+            .doc-card-body iframe {
+                height: 280px;
+            }
+
+            .folder-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .folder-container .drive-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* spacing antar topik */
+        .topic-accordion+.topic-accordion {
+            margin-top: 1.25rem;
+        }
+
+        .hero-actions {
+            margin-top: 1.5rem;
+        }
+
+        /* =====================================================
+           TOMBOL KEMBALI - latar putih solid
+           ===================================================== */
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--border-color, #cbd5e1);
+            color: var(--text-primary, #0f172a);
+            background: var(--bg-card, #ffffff);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-hover, #f1f5f9);
+            border-color: var(--text-primary, #0f172a);
+            text-decoration: none;
+        }
+
+        body.dark-mode .btn-outline {
+            border-color: var(--border-dark, #475569);
+            color: var(--text-light, #f1f5f9);
+            background: var(--bg-card-dark, #1e293b);
+        }
+
+        body.dark-mode .btn-outline:hover {
+            background: var(--bg-hover-dark, #1e293b);
+            border-color: var(--text-light, #f1f5f9);
+        }
+
+        /* info-box */
+        .info-box {
+            background: var(--bg-card, #f8fafc);
+            border: 1px solid var(--border-color, #e2e8f0);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+        }
+
+        body.dark-mode .info-box {
+            background: var(--bg-card-dark, #1e293b);
+            border-color: var(--border-dark, #334155);
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <div class="nav-container">
-        <a class="brand" href="../../index.html">
-            Siska Yulia Rahmawati
-        </a>
+    <!-- =====================================================
+    HEADER
+    ===================================================== -->
 
-        <nav class="nav-menu" aria-label="Navigasi utama">
-            <a href="../../index.html#hero">Home</a>
-            <a href="../../index.html#semester1">Semester 1</a>
-            <a href="../../index.html#semester2">Semester 2</a>
-            <a href="../../index.html#pengembangan">Pengembangan Diri</a>
-            <a href="../../tentang-saya.html">Tentang Saya</a>
-           
-        </nav>
+    <header class="site-header">
+        <div class="nav-container">
+            <a class="brand" href="../../index.html">
+                Siska Yulia Rahmawati
+            </a>
 
-        <div class="nav-actions">
-            <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
-                ☾
-            </button>
+            <nav class="nav-menu" aria-label="Navigasi utama">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#semester1">Semester 1</a>
+                <a href="../../index.html#semester2">Semester 2</a>
+                <a href="../../index.html#pengembangan">Pengembangan Diri</a>
+                <a href="../../tentang-saya.html">Tentang Saya</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="darkMode" class="icon-button" type="button" aria-label="Aktifkan mode gelap">
+                    ☾
+                </button>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<main>
+    <!-- =====================================================
+    MAIN
+    ===================================================== -->
 
-<section class="hero">
-    <div class="hero-content">
-        <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
-        <h1>Filosofi Pendidikan & Pendidikan Nilai</h1>
-        <p class="hero-text">Halaman template untuk dokumentasi mata kuliah Filosofi Pendidikan & Pendidikan Nilai. Isi topik, LK, artefak, dan refleksi di setiap bagian.</p>
-        <div class="hero-actions">
-            <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
-        </div>
-    </div>
-</section>
+    <main>
 
-<section>
-    <div class="section-heading">
-        <p class="eyebrow">PENDAHULUAN</p>
-        <h2>Intisari Mata Kuliah</h2>
-    </div>
-    <div class="info-box">
-        <h3>🔍 Deskripsi Singkat</h3>
-        <p>Isi ringkasan mata kuliah, tujuan pembelajaran, dan pengalaman awal Anda mengikuti mata kuliah ini.</p>
-    </div>
-</section>
+        <!-- =====================================================
+        HERO
+        ===================================================== -->
 
-<section class="section-muted">
-    <div class="section-heading">
-        <p class="eyebrow">TOPIK PEMBELAJARAN</p>
-        <h2>Topik dan Artefak</h2>
-        <p>Isi topik utama, lembar kerja, tugas, dan artefak yang Anda kerjakan.</p>
-    </div>
-
-    <details class="topic-accordion" open>
-        <summary class="topic-summary">
-            <div class="topic-summary-main">
-                <span class="timeline-number">01</span>
-                <div>
-                    <p class="eyebrow">TOPIK 1</p>
-                    <h3>Judul Topik</h3>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">📚 SEMESTER 1 • MATA KULIAH</p>
+                <h1>Filosofi Pendidikan &amp; Pendidikan Nilai</h1>
+                <p class="hero-text">
+                    Dokumentasi proses pembelajaran, topik,
+                    lembar kerja, tugas, artefak, dan refleksi
+                    selama mengikuti mata kuliah Filosofi Pendidikan &amp; Pendidikan Nilai.
+                </p>
+                <div class="hero-actions">
+                    <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Kembali ke Mata Kuliah</a>
                 </div>
             </div>
-        </summary>
-        <div class="topic-content">
-            <div class="topic-body">
-                <div>
-                    <h4>Deskripsi Topik</h4>
-                    <p>Isi deskripsi topik di sini.</p>
-                </div>
-                <div>
-                    <h4>📂 LK / Tugas</h4>
-                    <div class="task-list">
-                        <div class="task-item">
-                            <div>
-                                <h5>Nama LK / Tugas</h5>
-                                <p>Isi deskripsi tugas di sini.</p>
-                            </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Artefak</a>
+        </section>
+
+        <!-- =====================================================
+        PENDAHULUAN / INTISARI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+            <div class="section-heading">
+                <p class="eyebrow">PENDAHULUAN</p>
+                <h2>Intisari Mata Kuliah</h2>
+            </div>
+
+            <div class="info-box">
+                <h3>🔍 Filosofi Pendidikan &amp; Pendidikan Nilai</h3>
+                <p>
+                    Mata kuliah ini membahas hakikat pendidikan dan pentingnya pendidikan nilai dalam 
+                    membentuk peserta didik secara utuh, 
+                    meliputi aspek budi pekerti, pikiran, dan jasmani sebagaimana pemikiran Ki Hadjar Dewantara. 
+                    Pendidikan tidak hanya berfokus pada penyampaian pengetahuan, tetapi juga pada penghayatan 
+                    dan penerapan nilai dalam kehidupan. Mata kuliah ini juga membekali calon guru agar mampu 
+                    mengamalkan nilai-nilai Pancasila, menjadi teladan, berorientasi pada peserta didik, 
+                    menerapkan pembelajaran yang berpusat pada peserta didik, serta menjadi pembelajar sepanjang hayat.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================
+        TOPIK PEMBELAJARAN
+        ===================================================== -->
+
+        <section class="section-muted">
+
+            <div class="section-heading">
+                <p class="eyebrow">TOPIK PEMBELAJARAN</p>
+                <h2>Topik dan Artefak</h2>
+                <p>
+                    Dokumentasi setiap topik pembelajaran beserta
+                    LK atau tugas yang dikerjakan.
+                </p>
+            </div>
+
+            <!-- =================================================
+                 TOPIK 1
+                 ================================================= -->
+
+            <details class="topic-accordion" open>
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">01</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 1</p>
+                            <h3>Landasan Filosofi Pendidikan Nasional</h3>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </details>
+                </summary>
 
-    <details class="topic-accordion">
-        <summary class="topic-summary">
-            <div class="topic-summary-main">
-                <span class="timeline-number">02</span>
-                <div>
-                    <p class="eyebrow">TOPIK 2</p>
-                    <h3>Judul Topik</h3>
-                </div>
-            </div>
-        </summary>
-        <div class="topic-content">
-            <div class="topic-body">
-                <div>
+                <div class="topic-content">
                     <h4>Deskripsi Topik</h4>
-                    <p>Isi deskripsi topik di sini.</p>
+                    <p>
+                        Topik 1 membahas filosofi pendidikan Indonesia berdasarkan pemikiran Ki Hadjar Dewantara 
+                        dan Filsafat Pancasila sebagai landasan pendidikan nasional. 
+                        Pembelajaran diarahkan untuk memahami prinsip pendidikan yang sesuai dengan tujuan pendidikan 
+                        Indonesia serta karakteristik peserta didik.
+                        Mahasiswa juga belajar menerapkan pemikiran Ki Hadjar Dewantara dalam 
+                        merancang pembelajaran yang berpusat pada peserta didik, kontekstual, relevan, dan sesuai 
+                        dengan perkembangan zaman.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1yuE-THLx9Sh5Q1qGcy7M10gVFBX1C4y_?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 1
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
                 </div>
-                <div>
-                    <h4>📂 LK / Tugas</h4>
-                    <div class="task-list">
-                        <div class="task-item">
-                            <div>
-                                <h5>Nama LK / Tugas</h5>
-                                <p>Isi deskripsi tugas di sini.</p>
-                            </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Artefak</a>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 2
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">02</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 2</p>
+                            <h3> Pola Pikir Bertumbuh Dalam Pendidikan Nasional</h3>
                         </div>
                     </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 2 membahas pentingnya pola pikir bertumbuh (growth mindset) dalam proses belajar, 
+                        baik bagi peserta didik maupun guru. 
+                        Growth mindset mendorong seseorang untuk melihat kemampuan sebagai sesuatu yang dapat 
+                        dikembangkan melalui usaha, proses, dan pembelajaran dari kesalahan.
+                        Topik ini juga mengaitkan growth mindset dengan kerangka pendidikan nasional serta penerapannya dalam proses 
+                        pembelajaran dan refleksi diri mahasiswa untuk menciptakan pembelajaran yang adaptif dan berkelanjutan.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1sFr_36ZcL6AemlceTBMUWiAQsVQzhdVk?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 2
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 3
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">03</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 3</p>
+                            <h3>Pendidikan Nilai Dalam Kerangka Pendidikan Nasional</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 3 membahas Pendidikan Nilai sebagai pondasi pembentukan karakter bangsa. 
+                        Mahasiswa mempelajari strategi internalisasi dan pengembangan nilai serta penerapannya dalam 
+                        pembelajaran secara relevan dan efektif.
+                        Topik ini juga menekankan pentingnya pengembangan diri guru melalui refleksi dan kajian kasus, 
+                        sehingga guru mampu menjadi teladan (role model) dalam menghidupkan dan menerapkan nilai-nilai 
+                        positif dalam kehidupan sehari-hari.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1dlR_fYh7OrqlL_3w1SQiXUZZ3-LMtDB3?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 3
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+
+            <!-- =================================================
+                 TOPIK 4
+                 ================================================= -->
+
+            <details class="topic-accordion">
+
+                <summary class="topic-summary">
+                    <div class="topic-summary-main">
+                        <span class="timeline-number">04</span>
+                        <div>
+                            <p class="eyebrow">TOPIK 4</p>
+                            <h3>Filsafat Pendidikan Pancasila</h3>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="topic-content">
+
+                    <h4>Deskripsi Topik</h4>
+                    <p>
+                        Topik 4 membahas kode etik profesi guru sebagai pedoman dalam menjalankan tugas dan 
+                        perilaku profesional. Guru perlu memahami serta menerapkan kode etik secara etis, konsisten,
+                         dan bertanggung jawab.
+                        Pemahaman kode etik juga mendukung pendidikan nilai di sekolah, karena guru tidak hanya 
+                        mengajarkan nilai,tetapi juga menjadi teladan dalam menerapkannya melalui setiap tindakan 
+                        profesional.
+                    </p>
+                    <div class="folder-container">
+                        <a href="https://drive.google.com/drive/folders/1Wj4ByJ2S6zyvwhCFSGardQxYQ0-cppDD?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-btn">
+                            📁 Lihat semua artefak Topik 4
+                        </a>
+                        <p class="drive-note">
+                            Akses semua Lembar Kerja dalam satu folder Google Drive
+                        </p>
+                    </div>
+
+                </div>
+
+            </details>
+        </section>
+
+        <!-- =====================================================
+        REFLEKSI MATA KULIAH
+        ===================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+                <p class="eyebrow">REFLEKSI MATA KULIAH</p>
+                <h2>Refleksi Pembelajaran</h2>
+                <p>
+                    Dokumentasi refleksi hasil pembelajaran
+                    selama mengikuti mata kuliah Filosofi Pendidikan &amp; Pendidikan Nilai.
+                </p>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <h3>Dokumentasi Refleksi Mata Kuliah</h3>
+                    <p>Scroll dokumen berikut untuk melihat ringkasan hasil dan catatan akhir.</p>
+                </div>
+                <div class="doc-card-body">
+                    <iframe src="https://docs.google.com/document/d/1vApuNlNy0oXToddRx4s4_U1f757tbQCm/preview" title="Dokumentasi Refleksi Akhir Siklus" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
+
+        </section>
+
+        <!-- =====================================================
+        NAVIGASI KEMBALI
+        ===================================================== -->
+
+        <section class="section-muted">
+            <div class="hero-actions">
+                <a href="../../index.html#semester1" class="btn btn-outline">
+                    ← Kembali ke Semester 1
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+    BACK TO TOP
+    ===================================================== -->
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Kembali ke atas">
+        ↑
+    </button>
+
+    <!-- =====================================================
+    FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h2>PPG E - Portofolio</h2>
+                <p>
+                    Dokumentasi perjalanan dan pengembangan profesional
+                    Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan
+                    Informatika di Universitas Negeri Malang.
+                </p>
+            </div>
+
+            <div>
+                <h3>Navigasi</h3>
+                <div class="footer-links">
+                    <a href="#semester1">Semester 1</a>
+                    <a href="#semester2">Semester 2</a>
+                    <a href="#pengembangan">Pengembangan Diri</a>
+                    <a href="tentang-saya.html">Tentang Saya</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Terhubung</h3>
+                <div class="footer-links">
+                    <a href="mailto:siska.yulia.2531537@students.um.ac.id">
+                        ✉️ siska.yulia.2531537@students.um.ac.id
+                    </a>
+                    <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
+                        📷 @siskayuraa
+                    </a>
+                    <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
+                        🏛️ Universitas Negeri Malang
+                    </a>
+                </div>
+            </div>
+
         </div>
-    </details>
-</section>
 
-<section>
-    <div class="section-heading">
-        <p class="eyebrow">REFLEKSI</p>
-        <h2>Refleksi Mata Kuliah</h2>
-    </div>
-    <div class="card-grid">
-        <article class="card">
-            <div class="card-icon">💭</div>
-            <h3>Refleksi Pembelajaran</h3>
-            <p>Isikan refleksi proses belajar di mata kuliah ini.</p>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="artifact-btn">Lihat Refleksi</a>
-        </article>
-    </div>
-</section>
-
-<section class="section-muted">
-    <div class="section-heading">
-        <p class="eyebrow">NAVIGASI</p>
-        <h2>Kembali ke Daftar Mata Kuliah</h2>
-    </div>
-    <div class="hero-actions">
-        <a href="daftar-mata-kuliah.html" class="btn btn-outline">← Daftar Mata Kuliah</a>
-    </div>
-</section>
-
-</main>
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer>
-
-    <div class="footer-grid">
-
-        <!-- KOLOM 1: BRAND -->
-        <div>
-            <h2>PPG E - Portofolio</h2>
+        <div class="footer-bottom">
             <p>
-                Dokumentasi perjalanan dan pengembangan profesional 
-                Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan 
-                Informatika di Universitas Negeri Malang.
+                © <span data-current-year>2026</span>
+                Siska Yulia Rahmawati •
+                PPG E - Portofolio
             </p>
         </div>
 
-        <!-- KOLOM 2: NAVIGASI UTAMA (Ringkas) -->
-        <div>
-            <h3>Navigasi</h3>
-            <div class="footer-links">
-                <a href="#semester1">Semester 1</a>
-                <a href="#semester2">Semester 2</a>
-                <a href="#pengembangan">Pengembangan Diri</a>
-                <a href="tentang-saya.html">Tentang Saya</a>
-            </div>
-        </div>
+    </footer>
 
-        <!-- KOLOM 3: KONTAK & SOSIAL (Teks Lengkap) -->
-        <div>
-            <h3>Informasi Kontak</h3>
-            <div class="footer-links">
-                <a href="mailto:siska.yulia.2531537@students.um.ac.id">
-                     siska.yulia.2531537@students.um.ac.id
-                </a>
-                
-                <a href="https://www.instagram.com/siskayuraa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
-                     @siskayuraa
-                </a>
-                <a href="https://um.ac.id/">
-                    Universitas Negeri Malang - PPG Informatika
-                </a>
-            </div>
-        </div>
+    <!-- JAVASCRIPT -->
+    <script src="../../assets/js/script.js"></script>
 
-    </div>
-
-    <div class="footer-bottom">
-        <p>
-            © <span data-current-year>2026</span> 
-            Siska Yulia Rahmawati • 
-            PPG E - Portofolio
-        </p>
-    </div>
-
-</footer>
-<script src="../../assets/js/script.js"></script>
 </body>
+
 </html>

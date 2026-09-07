@@ -1,6 +1,6 @@
 /* =========================================================
    PPG E-PORTFOLIO — SISKA YULIA RAHMAWATI
-   STYLE.CSS — FINAL
+   STYLE.CSS — FINAL (DENGAN PERBAIKAN DARK MODE)
    ========================================================= */
 
 :root {
@@ -1260,6 +1260,11 @@ body.dark .contact-card h3 { color: var(--um-yellow); }
     overflow: hidden;
 }
 
+body.dark .topic-accordion {
+    background: var(--white);
+    border-color: var(--border);
+}
+
 .topic-summary {
     display: flex;
     align-items: center;
@@ -1267,6 +1272,12 @@ body.dark .contact-card h3 { color: var(--um-yellow); }
     padding: 24px 28px;
     cursor: pointer;
     list-style: none;
+    background: var(--white);
+    transition: background var(--transition);
+}
+
+body.dark .topic-summary {
+    background: var(--white);
 }
 
 .topic-summary::-webkit-details-marker {
@@ -1293,12 +1304,22 @@ body.dark .topic-summary h3 { color: var(--um-yellow); }
     font-size: 20px;
 }
 
+body.dark .topic-summary::after {
+    color: var(--um-yellow);
+}
+
 .topic-accordion[open] .topic-summary::after {
     content: "▴";
 }
 
 .topic-content {
     padding: 0 28px 28px;
+    background: var(--white);
+    transition: background var(--transition);
+}
+
+body.dark .topic-content {
+    background: var(--white);
 }
 
 .topic-content .topic-body {
@@ -1316,6 +1337,8 @@ body.dark .topic-summary h3 { color: var(--um-yellow); }
 
 body.dark .topic-content h4 { color: var(--um-yellow); }
 
+/* ================= TASK LIST & TASK ITEM (DARK MODE SUPPORT) ================= */
+
 .task-list {
     display: grid;
     gap: 12px;
@@ -1331,6 +1354,12 @@ body.dark .topic-content h4 { color: var(--um-yellow); }
     border: 1px solid var(--border);
     border-radius: 14px;
     background: var(--bg-soft);
+    transition: background var(--transition), border-color var(--transition);
+}
+
+body.dark .task-item {
+    background: #1a2a42;
+    border-color: var(--border);
 }
 
 .task-item h5 {
@@ -1339,10 +1368,77 @@ body.dark .topic-content h4 { color: var(--um-yellow); }
     font-size: 16px;
 }
 
+body.dark .task-item h5 {
+    color: var(--text);
+}
+
 .task-item p {
     color: var(--text-soft);
     font-size: 14px;
 }
+
+body.dark .task-item p {
+    color: var(--text-soft);
+}
+
+/* ================= FOLDER CONTAINER (DARK MODE SUPPORT) ================= */
+
+.folder-container {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+body.dark .folder-container {
+    background: #1a2a42;
+    border-color: var(--border);
+}
+
+.folder-container .drive-btn {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.folder-container .drive-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+}
+
+body.dark .folder-container .drive-btn {
+    background: #3b82f6;
+}
+
+body.dark .folder-container .drive-btn:hover {
+    background: #60a5fa;
+}
+
+.folder-container .drive-note {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+}
+
+body.dark .folder-container .drive-note {
+    color: var(--text-soft);
+}
+
+/* ================= ARTIFACT BUTTON (DARK MODE SUPPORT) ================= */
 
 .artifact-btn {
     display: inline-flex;
@@ -1363,6 +1459,14 @@ body.dark .topic-content h4 { color: var(--um-yellow); }
     transform: translateY(-2px);
 }
 
+body.dark .artifact-btn {
+    background: #3b82f6;
+}
+
+body.dark .artifact-btn:hover {
+    background: #60a5fa;
+}
+
 /* ================= INFO BOX ================= */
 
 .info-box {
@@ -1373,6 +1477,10 @@ body.dark .topic-content h4 { color: var(--um-yellow); }
     background: var(--um-blue-light);
 }
 
+body.dark .info-box {
+    background: #1a2a42;
+}
+
 .info-box h3 {
     margin-bottom: 10px;
     color: var(--um-blue);
@@ -1380,6 +1488,8 @@ body.dark .topic-content h4 { color: var(--um-yellow); }
 
 body.dark .info-box h3 { color: var(--um-yellow); }
 .info-box p { color: var(--text-soft); }
+
+/* ================= DOC CARD ================= */
 
 .doc-card {
     max-width: 900px;
@@ -1392,10 +1502,20 @@ body.dark .info-box h3 { color: var(--um-yellow); }
     overflow: visible;
 }
 
+body.dark .doc-card {
+    background: var(--white);
+    border-color: var(--border);
+}
+
 .doc-card-header {
     padding: 24px 28px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-soft);
+}
+
+body.dark .doc-card-header {
+    background: #1a2a42;
+    border-bottom-color: var(--border);
 }
 
 .doc-card-header h3 {
@@ -1403,8 +1523,16 @@ body.dark .info-box h3 { color: var(--um-yellow); }
     color: var(--um-blue);
 }
 
+body.dark .doc-card-header h3 {
+    color: var(--um-yellow);
+}
+
 .doc-card-header p {
     margin: 0;
+    color: var(--text-soft);
+}
+
+body.dark .doc-card-header p {
     color: var(--text-soft);
 }
 
@@ -1778,6 +1906,7 @@ footer p { color: rgba(255,255,255,.72); }
         transition-duration: .01ms !important;
     }
 }
+
 .footer-links a i {
     width: 1.5rem;
     text-align: center;
