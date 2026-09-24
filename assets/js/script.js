@@ -163,6 +163,119 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       CONSISTENT PPL FOOTER
+       ===================================================== */
+
+    const currentPath = window.location.pathname.replace(/\\/g, "/");
+    const isPplMandiriPage = currentPath.includes("/semester-2/ppl-mandiri/");
+
+    if (isPplMandiriPage) {
+        let footer = document.querySelector("footer");
+
+        if (!footer) {
+            footer = document.createElement("footer");
+            document.body.appendChild(footer);
+        }
+
+        if (!footer.querySelector(".footer-grid")) {
+            footer.insertAdjacentHTML("afterbegin", `
+                <div class="footer-grid">
+                    <div>
+                        <h2>PPG E - Portofolio</h2>
+                        <p>Dokumentasi perjalanan dan pengembangan profesional Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan Informatika di Universitas Negeri Malang.</p>
+                    </div>
+                    <div>
+                        <h3>Navigasi</h3>
+                        <div class="footer-links">
+                            <a href="../../index.html#semester1">Semester 1</a>
+                            <a href="../../index.html#semester2">Semester 2</a>
+                            <a href="../../index.html#pengembangan">Pengembangan Diri</a>
+                            <a href="../../tentang-saya.html">Tentang Saya</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Informasi Kontak</h3>
+                        <div class="footer-links">
+                            <a href="mailto:siska.yulia.2531537@students.um.ac.id">siska.yulia.2531537@students.um.ac.id</a>
+                            <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">@siskayuraa</a>
+                            <a href="https://um.ac.id/" target="_blank" rel="noopener noreferrer">Universitas Negeri Malang - PPG Informatika</a>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        if (!footer.querySelector(".footer-bottom")) {
+            footer.insertAdjacentHTML("beforeend", `
+                <div class="footer-bottom">
+                    <p>© <span data-current-year>2026</span> Siska Yulia Rahmawati • PPG E - Portofolio</p>
+                </div>
+            `);
+        }
+    }
+
+
+    /* =====================================================
+       INFINITE HORIZONTAL GALLERY
+       ===================================================== */
+
+    document.querySelectorAll(".infinite-gallery").forEach(gallery => {
+
+        let isDragging = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+
+        gallery.addEventListener("pointerdown", event => {
+            isDragging = true;
+            startX = event.clientX;
+            startScrollLeft = gallery.scrollLeft;
+            gallery.classList.add("is-dragging");
+            gallery.setPointerCapture(event.pointerId);
+        });
+
+        gallery.addEventListener("pointermove", event => {
+            if (!isDragging) return;
+
+            const distance = event.clientX - startX;
+            gallery.scrollLeft = startScrollLeft - distance;
+        });
+
+        function stopDragging(event) {
+            if (!isDragging) return;
+
+            isDragging = false;
+            gallery.classList.remove("is-dragging");
+
+            if (event.pointerId !== undefined && gallery.hasPointerCapture(event.pointerId)) {
+                gallery.releasePointerCapture(event.pointerId);
+            }
+        }
+
+        gallery.addEventListener("pointerup", stopDragging);
+        gallery.addEventListener("pointercancel", stopDragging);
+        gallery.addEventListener("mouseleave", () => {
+            if (isDragging) gallery.classList.remove("is-dragging");
+        });
+
+        gallery.addEventListener("wheel", event => {
+            if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+                event.preventDefault();
+                gallery.scrollLeft += event.deltaY;
+            }
+        }, { passive: false });
+
+        gallery.addEventListener("mouseenter", () => {
+            gallery.classList.add("is-paused");
+        });
+
+        gallery.addEventListener("mouseleave", () => {
+            gallery.classList.remove("is-paused");
+        });
+
+    });
+
+
+    /* =====================================================
        BACK TO TOP
        ===================================================== */
 

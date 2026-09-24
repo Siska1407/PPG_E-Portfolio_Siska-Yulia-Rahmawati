@@ -71,12 +71,12 @@ ul, ol { list-style: none; }
     margin-inline: auto;
 }
 
-section { padding: 100px 20px; }
+section { padding: 64px 20px; }
 .section-muted { background: var(--bg-soft); }
 
 .section-compact {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 42px;
+    padding-bottom: 42px;
 }
 
 .section-compact .section-block {
@@ -94,7 +94,7 @@ section { padding: 100px 20px; }
 
 .section-heading {
     max-width: 780px;
-    margin: 0 auto 55px;
+    margin: 0 auto 32px;
     text-align: center;
 }
 
@@ -471,16 +471,43 @@ body.dark .nav-menu a.active {
 
 .about-grid-two {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+.about-grid-two .about-card {
+    display: flex;
+    flex-direction: column;
 }
 
 .about-card,
-.about-photo-card,
 .photo-card {
     padding: 30px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--white);
     box-shadow: var(--shadow-sm);
+}
+
+.about-photo-card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 18px;
+}
+
+.about-photo-card::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: url("../images/profil-siska.jpeg") center / cover;
+    content: "";
+    filter: blur(24px) saturate(1.2);
+    opacity: .8;
+    transform: scale(1.04);
+    z-index: -1;
 }
 
 .about-card h2,
@@ -516,12 +543,23 @@ body.dark .photo-card h3 { color: var(--um-yellow); }
     color: var(--um-blue);
 }
 
-.about-photo-card img,
 .photo-card img {
     width: 100%;
     height: 240px;
     object-fit: cover;
     border-radius: 16px;
+}
+
+.about-photo-card img {
+    position: relative;
+    display: block;
+    width: min(100%, 390px);
+    height: auto;
+    max-height: 560px;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(18, 48, 86, 0.18);
+    z-index: 1;
 }
 
 .photo-grid {
@@ -531,6 +569,221 @@ body.dark .photo-card h3 { color: var(--um-yellow); }
     max-width: 1100px;
     margin-inline: auto;
 }
+
+.origin-showcase {
+    max-width: 1100px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.origin-heading {
+    margin-bottom: 28px;
+}
+
+.origin-heading h2 {
+    margin-bottom: 0;
+    color: var(--um-blue);
+}
+
+body.dark .origin-heading h2 { color: var(--um-yellow); }
+
+.origin-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding: 12px 6px;
+}
+
+.origin-photo {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 4 / 3;
+    padding: 18px;
+}
+
+.origin-photo::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background-position: center;
+    background-size: cover;
+    content: "";
+    filter: blur(24px) saturate(1.2);
+    opacity: .8;
+    transform: scale(1.04);
+    z-index: -1;
+}
+
+.origin-photo:nth-child(1)::before { background-image: url("../images/daerah-asal.svg"); }
+.origin-photo:nth-child(2)::before { background-image: url("../images/pembelajaran.svg"); }
+.origin-photo:nth-child(3)::before { background-image: url("../images/guru-inspiratif.svg"); }
+
+.origin-gallery img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(18, 48, 86, 0.18);
+    z-index: 1;
+}
+
+.origin-description {
+    max-width: 980px;
+    margin: 26px auto 0;
+    color: var(--text-soft);
+    line-height: 1.75;
+}
+
+.origin-details {
+    display: grid;
+    gap: 28px;
+    max-width: 1040px;
+    margin: 52px auto 0;
+    text-align: left;
+}
+
+.origin-detail {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    align-items: center;
+    gap: 34px;
+}
+
+.origin-detail-photo {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 4 / 3;
+    padding: 12px;
+}
+
+.origin-detail-photo::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    content: "";
+    filter: blur(18px) saturate(1.15);
+    opacity: .75;
+    transform: scale(1.05);
+    z-index: -1;
+}
+
+.origin-detail:nth-child(1) .origin-detail-photo::before { background-image: url("../images/probolinggo-bromo.jpg"); }
+.origin-detail:nth-child(2) .origin-detail-photo::before { background-image: url("../images/probolinggo-pantai-bentar.png"); }
+.origin-detail:nth-child(3) .origin-detail-photo::before { background-image: url("../images/probolinggo-tarian.jpg"); }
+
+.origin-detail-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(18, 48, 86, 0.16);
+}
+
+.origin-detail-copy h3 {
+    margin-bottom: 10px;
+    color: var(--um-blue);
+}
+
+.origin-detail-copy p {
+    margin: 0;
+    color: var(--text-soft);
+    line-height: 1.7;
+}
+
+.origin-details-food {
+    margin-top: 42px;
+}
+
+.origin-details-food .origin-detail {
+    grid-template-columns: 1fr minmax(220px, 280px);
+}
+
+.origin-details-food .origin-detail:nth-child(1) .origin-detail-photo::before {
+    background-image: url("../images/probolinggo-petik-laut.jpg");
+}
+
+.origin-details-food .origin-detail:nth-child(2) .origin-detail-photo::before {
+    background-image: url("../images/probolinggo-pindang-tongkol.jpg");
+}
+
+.origin-details-food .origin-detail:nth-child(3) .origin-detail-photo::before {
+    background-image: url("../images/probolinggo-soto-kraksaan.jpg");
+}
+
+.origin-identity {
+    max-width: 1100px;
+    margin: 72px auto 0;
+    text-align: center;
+}
+
+.origin-identity > h2 {
+    margin-bottom: 24px;
+    color: var(--um-blue);
+}
+
+body.dark .origin-identity > h2 { color: var(--um-yellow); }
+
+.origin-identity-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr);
+    align-items: center;
+    gap: 34px;
+    text-align: center;
+}
+
+.origin-identity-grid > p {
+    margin: 0;
+    color: var(--text-soft);
+    line-height: 1.7;
+}
+
+.origin-identity-photo {
+    position: relative;
+    isolation: isolate;
+    width: 300px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.origin-identity-photo::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: url("../images/probolinggo-batik.jpg") center / cover;
+    content: "";
+    filter: blur(20px) saturate(1.2);
+    opacity: .75;
+    transform: scale(1.06);
+    z-index: -1;
+}
+
+.origin-identity-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 6px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 10px 24px rgba(18, 48, 86, 0.18);
+}
+
+.origin-identity-photo figcaption {
+    margin-top: 12px;
+    color: var(--um-blue);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+body.dark .origin-identity-photo figcaption { color: var(--um-yellow); }
+
+body.dark .origin-detail-copy h3 { color: var(--um-yellow); }
 
 .profile-card img,
 .profile-photo,
@@ -623,7 +876,7 @@ body.dark .journey-content h3 { color: var(--um-yellow); }
 .semester-grid {
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 28px;
+    gap: 20px;
     max-width: 1000px;
     margin-inline: auto;
 }
@@ -633,7 +886,7 @@ body.dark .journey-content h3 { color: var(--um-yellow); }
 .semester-card {
     position: relative;
     overflow: hidden;
-    padding: 34px;
+    padding: 26px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--white);
@@ -659,7 +912,7 @@ body.dark .journey-content h3 { color: var(--um-yellow); }
     place-items: center;
     width: 62px;
     height: 62px;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
     border-radius: 16px;
     background: var(--um-blue-light);
     color: var(--um-blue);
@@ -902,7 +1155,7 @@ body.dark .stat-number { color: var(--um-yellow); }
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 25px;
+    gap: 20px;
 }
 
 .section-compact .card-grid {
@@ -914,7 +1167,7 @@ body.dark .stat-number { color: var(--um-yellow); }
 }
 
 .card {
-    padding: 30px;
+    padding: 24px;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--white);
@@ -932,7 +1185,7 @@ body.dark .stat-number { color: var(--um-yellow); }
     place-items: center;
     width: 60px;
     height: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     border-radius: 15px;
     background: var(--um-blue-light);
     color: var(--um-blue);
@@ -956,6 +1209,137 @@ body.dark .card h3 { color: var(--um-yellow); }
 }
 
 body.dark .card-link { color: var(--um-yellow); }
+
+.ppl-topic-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+}
+
+.ppl-cycle-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+}
+
+.ppl-topic-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.ppl-topic-card .card-link {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.infinite-gallery {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    padding: 4px 0 18px;
+    isolation: isolate;
+    cursor: grab;
+    scrollbar-width: none;
+    touch-action: pan-x;
+}
+
+.infinite-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.infinite-gallery.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.infinite-gallery::before,
+.infinite-gallery::after {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 18px;
+    width: clamp(36px, 8vw, 110px);
+    content: "";
+    pointer-events: none;
+}
+
+.infinite-gallery::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg-soft), transparent);
+}
+
+.infinite-gallery::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--bg-soft), transparent);
+}
+
+.infinite-gallery-track-group {
+    display: flex;
+    flex: 0 0 auto;
+    animation: infinite-gallery-scroll 25s linear infinite;
+    will-change: transform;
+}
+
+.infinite-gallery.is-dragging .infinite-gallery-track-group {
+    animation-play-state: paused;
+}
+
+.infinite-gallery-track {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+.infinite-gallery:hover .infinite-gallery-track-group,
+.infinite-gallery.is-paused .infinite-gallery-track-group {
+    animation-play-state: paused;
+}
+
+.infinite-gallery-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(340px, 78vw);
+    height: 220px;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    background: var(--bg-soft);
+}
+
+.infinite-gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+}
+
+.infinite-gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.infinite-gallery-item figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 36px 16px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,.78));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+@keyframes infinite-gallery-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .infinite-gallery-track-group {
+        animation-play-state: paused;
+    }
+}
 
 /* ================= ARTIFACT ================= */
 
@@ -1412,6 +1796,44 @@ body.dark .folder-container {
     box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
 }
 
+/* ================= REFLECTION DOCUMENT ================= */
+
+.doc-card {
+    overflow: hidden;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+}
+
+.doc-card-header {
+    padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.doc-card-header h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.15rem;
+}
+
+.doc-card-header p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+
+.doc-card-body {
+    padding: 0.5rem 1.5rem 1.5rem;
+}
+
+.doc-card-body .info-box {
+    margin: 0;
+}
+
+body.dark .doc-card {
+    background: var(--white);
+    border-color: var(--border);
+}
+
 .folder-container .drive-btn:hover {
     background: #1d4ed8;
     box-shadow: 0 6px 10px -2px rgba(37, 99, 235, 0.3);
@@ -1781,9 +2203,30 @@ footer p { color: rgba(255,255,255,.72); }
 
     .about-grid,
     .about-grid-two,
-    .photo-grid {
+    .photo-grid,
+    .origin-gallery {
         grid-template-columns: 1fr;
     }
+
+    .origin-gallery img { aspect-ratio: 16 / 9; }
+
+    .origin-detail {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .origin-details-food .origin-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .origin-identity-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .origin-identity-grid > p { max-width: 560px; margin-inline: auto; }
+
+    .origin-detail-photo { max-width: 420px; }
 
     .journey::before { left: 15px; }
 
@@ -1796,6 +2239,8 @@ footer p { color: rgba(255,255,255,.72); }
 
     .semester-grid,
     .semester-grid.three,
+    .ppl-topic-grid,
+    .ppl-cycle-grid,
     .vision-container,
     .analysis-item,
     .video-grid,
@@ -1812,7 +2257,7 @@ footer p { color: rgba(255,255,255,.72); }
 @media (max-width: 560px) {
     :root { --header-height: 68px; }
 
-    section { padding: 75px 16px; }
+    section { padding: 48px 16px; }
 
     .container,
     .nav-container,
@@ -1836,13 +2281,13 @@ footer p { color: rgba(255,255,255,.72); }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; }
 
-    .section-heading { margin-bottom: 40px; }
+    .section-heading { margin-bottom: 26px; }
 
     .profile-card,
     .semester-card,
     .card,
     .contact-card {
-        padding: 25px;
+        padding: 21px;
     }
 
     .topic-summary {
@@ -1872,6 +2317,10 @@ footer p { color: rgba(255,255,255,.72); }
 
     .artifact-grid,
     .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .ppl-topic-grid {
         grid-template-columns: 1fr;
     }
 
