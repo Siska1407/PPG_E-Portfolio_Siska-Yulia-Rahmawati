@@ -1972,6 +1972,25 @@ body.dark .doc-card-header p {
     display: block;
 }
 
+.reflection-preview .doc-card-body {
+    height: min(60vh, 520px);
+    min-height: 360px;
+    max-height: none;
+    overflow: hidden;
+    background: #fff;
+}
+
+.reflection-preview .doc-card-body iframe {
+    min-height: 100%;
+}
+
+@media (max-width: 640px) {
+    .reflection-preview .doc-card-body {
+        height: 60vh;
+        min-height: 320px;
+    }
+}
+
 /* ================= SEARCH ================= */
 
 .toolbar {
