@@ -74,12 +74,12 @@ ul, ol { list-style: none; }
     margin-inline: auto;
 }
 
-section { padding: 64px 20px; }
+section { padding: 36px 20px; }
 .section-muted { background: var(--bg-soft); }
 
 .section-compact {
-    padding-top: 42px;
-    padding-bottom: 42px;
+    padding-top: 28px;
+    padding-bottom: 28px;
 }
 
 .section-compact .section-block {
@@ -2341,7 +2341,11 @@ footer p { color: rgba(255,255,255,.72); }
 @media (max-width: 560px) {
     :root { --header-height: 68px; }
 
-    section { padding: 48px 16px; }
+    section { padding: 24px 16px; }
+    .section-compact {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 
     .container,
     .nav-container,
