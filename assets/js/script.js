@@ -224,11 +224,22 @@ document.addEventListener("DOMContentLoaded", () => {
         let isDragging = false;
         let startX = 0;
         let startScrollLeft = 0;
+        let pressedImage = null;
+        let hasDragged = false;
 
         gallery.addEventListener("pointerdown", event => {
+            if (!event.isPrimary || event.button !== 0) return;
+
             isDragging = true;
             startX = event.clientX;
             startScrollLeft = gallery.scrollLeft;
+            pressedImage = event.target.closest(
+                ".innovation-screenshot-item img, .reflection-gallery img"
+            );
+            if (pressedImage?.closest('[aria-hidden="true"]')) {
+                pressedImage = null;
+            }
+            hasDragged = false;
             gallery.classList.add("is-dragging");
             gallery.setPointerCapture(event.pointerId);
         });
@@ -237,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isDragging) return;
 
             const distance = event.clientX - startX;
+            if (Math.abs(distance) > 8) hasDragged = true;
             gallery.scrollLeft = startScrollLeft - distance;
         });
 
@@ -251,8 +263,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        gallery.addEventListener("pointerup", stopDragging);
-        gallery.addEventListener("pointercancel", stopDragging);
+        gallery.addEventListener("pointerup", event => {
+            const imageToOpen = hasDragged ? null : pressedImage;
+            stopDragging(event);
+            pressedImage = null;
+
+            if (imageToOpen) openLightbox(imageToOpen);
+        });
+
+        gallery.addEventListener("pointercancel", event => {
+            stopDragging(event);
+            pressedImage = null;
+        });
         gallery.addEventListener("mouseleave", () => {
             if (isDragging) gallery.classList.remove("is-dragging");
         });
@@ -511,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const galleryImages =
         document.querySelectorAll(
-            ".gallery-item img"
+            ".gallery-item img, .innovation-screenshot-item img, .reflection-gallery img"
         );
 
     if (galleryImages.length > 0) {
@@ -520,6 +542,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.createElement("div");
 
         lightbox.className = "lightbox";
+        lightbox.setAttribute("role", "dialog");
+        lightbox.setAttribute("aria-modal", "true");
+        lightbox.setAttribute("aria-label", "Pratinjau gambar galeri");
 
         lightbox.innerHTML = `
             <button
@@ -544,29 +569,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".lightbox-close"
             );
 
+        let lastFocusedImage = null;
+
+        function openLightbox(image) {
+            lastFocusedImage = image;
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt || "Preview dokumentasi";
+            lightbox.classList.add("show");
+            document.body.style.overflow = "hidden";
+            closeButton.focus();
+        }
 
         galleryImages.forEach(image => {
 
-            image.addEventListener(
-                "click",
-                () => {
+            if (!image.closest('[aria-hidden="true"]')) {
+                image.tabIndex = 0;
+                image.setAttribute("role", "button");
+                image.setAttribute(
+                    "aria-label",
+                    `${image.alt || "Gambar galeri"} (klik untuk memperbesar)`
+                );
+            }
 
-                    lightboxImage.src =
-                        image.src;
-
-                    lightboxImage.alt =
-                        image.alt ||
-                        "Preview dokumentasi";
-
-                    lightbox.classList.add(
-                        "show"
-                    );
-
-                    document.body.style.overflow =
-                        "hidden";
-
+            image.addEventListener("keydown", event => {
+                if (
+                    !image.closest('[aria-hidden="true"]') &&
+                    (event.key === "Enter" || event.key === " ")
+                ) {
+                    event.preventDefault();
+                    openLightbox(image);
                 }
-            );
+            });
 
         });
 
@@ -581,6 +614,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "";
 
             lightboxImage.src = "";
+
+            lastFocusedImage?.focus();
+            lastFocusedImage = null;
 
         }
 
@@ -623,6 +659,70 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
+    }
+
+    const videoZoomButtons = document.querySelectorAll(".origin-video-zoom");
+
+    if (videoZoomButtons.length > 0) {
+        const videoLightbox = document.createElement("div");
+        videoLightbox.className = "video-lightbox";
+        videoLightbox.setAttribute("role", "dialog");
+        videoLightbox.setAttribute("aria-modal", "true");
+        videoLightbox.setAttribute("aria-label", "Video Tari Glipang");
+        videoLightbox.innerHTML = `
+            <button class="video-lightbox-close" type="button" aria-label="Tutup video">×</button>
+            <video controls autoplay muted playsinline></video>
+            <p class="video-lightbox-status" aria-live="polite"></p>
+        `;
+        document.body.appendChild(videoLightbox);
+
+        const enlargedVideo = videoLightbox.querySelector("video");
+        const closeVideoButton = videoLightbox.querySelector(".video-lightbox-close");
+        const videoStatus = videoLightbox.querySelector(".video-lightbox-status");
+        let lastFocusedZoomButton = null;
+
+        function closeVideoLightbox() {
+            videoLightbox.classList.remove("show");
+            enlargedVideo.pause();
+            enlargedVideo.removeAttribute("src");
+            enlargedVideo.load();
+            videoStatus.textContent = "";
+            document.body.style.overflow = "";
+            lastFocusedZoomButton?.focus();
+            lastFocusedZoomButton = null;
+        }
+
+        videoZoomButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const inlineVideo = button.closest(".origin-video-frame").querySelector("video");
+                lastFocusedZoomButton = button;
+                enlargedVideo.src = inlineVideo.currentSrc || inlineVideo.querySelector("source").src;
+                enlargedVideo.currentTime = Number.isFinite(inlineVideo.currentTime)
+                    ? inlineVideo.currentTime
+                    : 0;
+                videoLightbox.classList.add("show");
+                document.body.style.overflow = "hidden";
+                videoStatus.textContent = "";
+                closeVideoButton.focus();
+
+                enlargedVideo.play().catch(error => {
+                    videoStatus.textContent = "Tekan tombol putar untuk memulai video.";
+                    console.error("Video Tari Glipang gagal diputar otomatis:", error);
+                });
+            });
+        });
+
+        closeVideoButton.addEventListener("click", closeVideoLightbox);
+
+        videoLightbox.addEventListener("click", event => {
+            if (event.target === videoLightbox) closeVideoLightbox();
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && videoLightbox.classList.contains("show")) {
+                closeVideoLightbox();
+            }
+        });
     }
 
 

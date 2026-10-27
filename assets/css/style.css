@@ -572,6 +572,46 @@ body.dark .photo-card h3 { color: var(--um-yellow); }
     z-index: 1;
 }
 
+.philosophy-section {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.philosophy-section .section-heading {
+    margin-bottom: 24px;
+}
+
+.philosophy-section .section-heading h2 {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.philosophy-portrait {
+    width: min(280px, 72vw);
+    height: 360px;
+    margin: 0 auto 28px;
+    overflow: hidden;
+    border: 6px solid var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.philosophy-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+}
+
+.philosophy-description {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.8;
+}
+
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -684,7 +724,6 @@ body.dark .origin-heading h2 { color: var(--um-yellow); }
 
 .origin-detail:nth-child(1) .origin-detail-photo::before { background-image: url("../images/probolinggo-bromo.jpg"); }
 .origin-detail:nth-child(2) .origin-detail-photo::before { background-image: url("../images/probolinggo-pantai-bentar.png"); }
-.origin-detail:nth-child(3) .origin-detail-photo::before { background-image: url("../images/probolinggo-tarian.jpg"); }
 
 .origin-detail-photo img {
     display: block;
@@ -693,6 +732,82 @@ body.dark .origin-heading h2 { color: var(--um-yellow); }
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 8px 18px rgba(18, 48, 86, 0.16);
+}
+
+.origin-video-frame {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.origin-detail-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: #000;
+    object-fit: cover;
+}
+
+.origin-video-zoom {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.65);
+    border-radius: 50%;
+    background: rgba(0,0,0,.68);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: zoom-in;
+}
+
+.origin-video-zoom:hover { background: rgba(0,0,0,.88); }
+
+.video-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 5100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: rgba(0,0,0,.92);
+}
+
+.video-lightbox.show { display: flex; }
+
+.video-lightbox video {
+    display: block;
+    max-width: 92vw;
+    max-height: 86vh;
+    border-radius: 12px;
+    background: #000;
+}
+
+.video-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    font-size: 25px;
+}
+
+.video-lightbox-status {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    color: #fff;
+    font-size: 14px;
+    transform: translateX(-50%);
 }
 
 .origin-detail-copy h3 {
@@ -705,6 +820,19 @@ body.dark .origin-heading h2 { color: var(--um-yellow); }
     color: var(--text-soft);
     line-height: 1.7;
 }
+
+.origin-detail-copy .origin-image-credit {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.origin-image-credit a {
+    color: var(--um-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+body.dark .origin-image-credit a { color: var(--um-yellow); }
 
 .origin-details-food {
     margin-top: 42px;
@@ -766,7 +894,7 @@ body.dark .origin-identity > h2 { color: var(--um-yellow); }
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: url("../images/probolinggo-batik.jpg") center / cover;
+    background: url("../images/probolinggo-batik-kolase.png") center / cover;
     content: "";
     filter: blur(20px) saturate(1.2);
     opacity: .75;
@@ -794,6 +922,98 @@ body.dark .origin-identity > h2 { color: var(--um-yellow); }
 body.dark .origin-identity-photo figcaption { color: var(--um-yellow); }
 
 body.dark .origin-detail-copy h3 { color: var(--um-yellow); }
+
+.origin-map {
+    max-width: 1040px;
+    margin: 56px auto 0;
+    text-align: center;
+}
+
+.origin-map h2 {
+    margin-bottom: 8px;
+    color: var(--um-blue);
+}
+
+body.dark .origin-map h2 { color: var(--um-yellow); }
+
+.origin-map > p {
+    margin: 0 0 22px;
+    color: var(--text-soft);
+}
+
+.origin-map-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.origin-map-probolinggo {
+    max-width: 700px;
+    margin-top: 28px;
+}
+
+.origin-map-probolinggo .origin-map-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.origin-map-card h3 {
+    margin-bottom: 4px;
+    color: var(--um-blue);
+    text-align: center;
+}
+
+body.dark .origin-map-card h3 { color: var(--um-yellow); }
+
+.origin-map-card > p {
+    min-height: 24px;
+    margin: 0 0 12px;
+    color: var(--text-soft);
+    text-align: center;
+}
+
+.origin-map-card > .origin-map-description {
+    min-height: 0;
+    margin: 16px 0 0;
+    color: var(--text-soft);
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.origin-map-frame {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.origin-map-frame iframe {
+    display: block;
+    width: 100%;
+    height: 320px;
+    border: 0;
+}
+
+.origin-map-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--um-blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.origin-map-link:hover { text-decoration: underline; }
+
+body.dark .origin-map-link { color: var(--um-yellow); }
+
+@media (max-width: 900px) {
+    .origin-map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .origin-map-grid { grid-template-columns: 1fr; }
+    .origin-map-frame iframe { height: 300px; }
+}
 
 .profile-card img,
 .profile-photo,
@@ -851,6 +1071,12 @@ body.dark .profile-card h2 { color: var(--um-yellow); }
     margin-bottom: 50px;
 }
 
+.reflection-journey .journey-item:nth-child(even) .journey-content {
+    grid-column: 2;
+}
+
+.reflection-journey .journey-item:last-child { margin-bottom: 0; }
+
 .journey-content {
     padding: 28px;
     border: 1px solid var(--border);
@@ -880,6 +1106,38 @@ body.dark .journey-content h3 { color: var(--um-yellow); }
     background: var(--um-yellow);
     box-shadow: 0 0 0 3px var(--um-blue);
 }
+
+.cycle-attachments { margin-top: 32px; }
+
+.reflection-copy-card {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.reflection-copy-card p {
+    color: var(--text-soft);
+    line-height: 1.8;
+}
+
+.reflection-teacher-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    align-items: center;
+    gap: 32px;
+    max-width: 1000px;
+    margin-inline: auto;
+}
+
+.reflection-teacher-layout .philosophy-portrait {
+    margin: 0 auto;
+}
+
+.reflection-copy-card p + p { margin-top: 16px; }
 
 /* ================= SEMESTER ================= */
 
@@ -1151,6 +1409,27 @@ body.dark .stat-number { color: var(--um-yellow); }
     color: rgba(255,255,255,.82);
 }
 
+.page-hero .innovation-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 900px;
+    margin-top: 24px;
+}
+
+.page-hero .innovation-hero-tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 7px 13px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    background: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.94);
+    font-size: 13px;
+    font-weight: 650;
+}
+
 .breadcrumb {
     display: flex;
     flex-wrap: wrap;
@@ -1316,6 +1595,11 @@ body.dark .card-link { color: var(--um-yellow); }
     background: var(--bg-soft);
 }
 
+.innovation-screenshot-item img {
+    object-fit: contain;
+    background: var(--white);
+}
+
 .infinite-gallery-item img {
     display: block;
     width: 100%;
@@ -1328,7 +1612,8 @@ body.dark .card-link { color: var(--um-yellow); }
     transform: scale(1.08);
 }
 
-.infinite-gallery-item figcaption {
+.infinite-gallery-item figcaption,
+.infinite-gallery-item-caption {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -1340,6 +1625,30 @@ body.dark .card-link { color: var(--um-yellow); }
     font-weight: 700;
 }
 
+.reflection-gallery-placeholder {
+    display: grid;
+    place-items: center;
+    border: 1px dashed var(--border);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,199,44,.16), transparent 38%),
+        var(--white);
+}
+
+.reflection-photo-placeholder {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg-soft);
+    color: var(--um-blue);
+    font-size: 34px;
+    font-weight: 300;
+}
+
+body.dark .reflection-photo-placeholder { color: var(--um-yellow); }
+
 @keyframes infinite-gallery-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -1349,6 +1658,419 @@ body.dark .card-link { color: var(--um-yellow); }
     .infinite-gallery-track-group {
         animation-play-state: paused;
     }
+}
+
+.innovation-results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 900px;
+    margin: 28px auto 0;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    text-align: center;
+}
+
+.innovation-results > div {
+    display: grid;
+    gap: 5px;
+    padding: 5px 14px;
+}
+
+.innovation-results > div + div {
+    border-left: 1px solid var(--border);
+}
+
+.innovation-results strong {
+    color: var(--um-blue);
+    font-size: 25px;
+}
+
+body.dark .innovation-results strong { color: var(--um-yellow); }
+
+.innovation-identity-card {
+    max-width: 1180px;
+    margin: 0 auto 44px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.innovation-identity-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.innovation-identity-heading .semester-icon {
+    flex: 0 0 62px;
+    margin: 0;
+}
+
+.innovation-identity-heading .eyebrow {
+    margin: 0 0 5px;
+}
+
+.innovation-identity-heading h3 {
+    margin: 0;
+    color: var(--um-blue);
+    font-size: 23px;
+}
+
+body.dark .innovation-identity-heading h3 {
+    color: var(--um-yellow);
+}
+
+.innovation-identity-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+}
+
+.innovation-identity-list > div {
+    display: grid;
+    grid-template-columns: minmax(130px, .75fr) minmax(0, 1.5fr);
+    gap: 14px;
+    padding: 13px 0;
+    border-top: 1px solid var(--border);
+}
+
+.innovation-identity-list dt {
+    color: var(--text-soft);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.innovation-identity-list dd {
+    margin: 0;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.innovation-detail-intro {
+    margin-top: 0;
+}
+
+.innovation-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1180px;
+    margin-inline: auto;
+}
+
+.innovation-detail-card {
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.innovation-detail-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: var(--um-yellow);
+    content: "";
+}
+
+.innovation-detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.innovation-detail-heading {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.innovation-detail-heading .semester-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border-radius: 14px;
+    font-size: 23px;
+}
+
+.innovation-detail-heading h2 {
+    align-self: center;
+    margin: 0;
+    color: var(--um-blue);
+    font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.3;
+}
+
+body.dark .innovation-detail-heading h2 {
+    color: var(--um-yellow);
+}
+
+.innovation-detail-card h3 {
+    margin: 20px 0 9px;
+    color: var(--um-blue);
+    font-size: 16px;
+}
+
+body.dark .innovation-detail-card h3 {
+    color: var(--um-yellow);
+}
+
+.innovation-detail-card h3:first-of-type {
+    margin-top: 0;
+}
+
+.innovation-detail-card p,
+.innovation-detail-card li {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.innovation-detail-card p + h3 {
+    margin-top: 22px;
+}
+
+.innovation-detail-card ul,
+.innovation-detail-card ol {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding-left: 22px;
+}
+
+.innovation-detail-card ul {
+    list-style: disc;
+}
+
+.innovation-detail-card ol {
+    list-style: decimal;
+}
+
+.innovation-detail-card li {
+    padding-left: 3px;
+}
+
+.innovation-detail-card ul + h3,
+.innovation-detail-card ol + h3 {
+    margin-top: 20px;
+}
+
+.innovation-detail-card .innovation-principles {
+    gap: 12px;
+}
+
+.innovation-detail-card .innovation-principles strong {
+    color: var(--um-blue);
+}
+
+body.dark .innovation-detail-card .innovation-principles strong {
+    color: var(--um-yellow);
+}
+
+.innovation-principles-card,
+.innovation-evaluation-card {
+    grid-column: 1 / -1;
+}
+
+.innovation-table-wrap {
+    width: 100%;
+    margin-top: 16px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    scrollbar-color: var(--um-blue) var(--bg-soft);
+}
+
+.innovation-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    color: var(--text);
+    text-align: left;
+}
+
+.innovation-table th,
+.innovation-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.65;
+    vertical-align: top;
+}
+
+.innovation-table thead th {
+    background: var(--um-blue-light);
+    color: var(--um-blue);
+    font-weight: 800;
+}
+
+.innovation-table tbody th {
+    color: var(--um-blue);
+    font-weight: 800;
+}
+
+body.dark .innovation-table thead th {
+    background: rgba(255,199,44,.12);
+    color: var(--um-yellow);
+}
+
+body.dark .innovation-table tbody th {
+    color: var(--um-yellow);
+}
+
+.innovation-table tbody tr:last-child th,
+.innovation-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.innovation-evaluation-table {
+    min-width: 900px;
+}
+
+.innovation-evaluation-table th:nth-child(1) { width: 56px; }
+.innovation-evaluation-table th:nth-child(2) { width: 190px; }
+
+.reflection-rtl-table { min-width: 860px; }
+.reflection-rtl-table th:nth-child(1) { width: 58px; }
+.reflection-rtl-table th:nth-child(2) { width: 205px; }
+.reflection-rtl-table th:nth-child(3) { width: 38%; }
+.innovation-evaluation-table th:nth-child(3) { width: 42%; }
+
+.innovation-results span,
+.innovation-note {
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.innovation-note {
+    max-width: 760px;
+    margin: 14px auto 0;
+    text-align: center;
+}
+
+.innovation-demo {
+    margin: 28px auto 0;
+}
+
+.innovation-demo .section-heading {
+    margin-bottom: 18px;
+}
+
+.innovation-demo-card {
+    width: min(100%, 900px);
+    margin-inline: auto;
+}
+
+.innovation-demo-card .video-frame {
+    display: block;
+    background: var(--bg-soft);
+}
+
+.innovation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.innovation-artifacts {
+    margin-top: 54px;
+    scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+#dokumentasi-inovasi {
+    scroll-margin-top: var(--header-height);
+}
+
+.innovation-artifacts .section-heading {
+    margin-bottom: 24px;
+}
+
+.innovation-artifacts .section-heading h3 {
+    margin-bottom: 12px;
+    color: var(--um-blue);
+    font-size: clamp(24px, 3vw, 34px);
+}
+
+body.dark .innovation-artifacts .section-heading h3 {
+    color: var(--um-yellow);
+}
+
+.innovation-artifacts .innovation-artifact-grid {
+    width: min(100%, 900px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: auto;
+}
+
+.innovation-overview .semester-card h2 {
+    margin-bottom: 12px;
+    color: var(--um-blue);
+    font-size: 23px;
+}
+
+body.dark .innovation-overview .semester-card h2 {
+    color: var(--um-yellow);
+}
+
+.innovation-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text);
+}
+
+.innovation-slide h3 {
+    margin: 12px 0 8px;
+    color: var(--um-blue);
+    font-size: 22px;
+}
+
+body.dark .innovation-slide h3 { color: var(--um-yellow); }
+
+.innovation-slide p {
+    margin-bottom: 0;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.innovation-slide .innovation-slide-number {
+    color: var(--um-blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+body.dark .innovation-slide .innovation-slide-number {
+    color: var(--um-yellow);
+}
+
+.innovation-slide figcaption {
+    position: static;
+    margin-top: auto;
+    padding: 14px 0 0;
+    background: none;
+    color: var(--text-soft);
+    font-size: 12px;
+}
+
+.innovation-slide-preview img {
+    object-fit: contain;
 }
 
 /* ================= ARTIFACT ================= */
@@ -1492,6 +2214,58 @@ body.dark .analysis-text h3 { color: var(--um-yellow); }
     text-align: center;
 }
 
+.document-preview-list {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+}
+
+.document-preview-item {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+}
+
+.document-preview-item summary {
+    padding: 14px 16px;
+    color: var(--um-blue);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.quiz-preview-image-link {
+    display: block;
+    margin: 0 16px 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-soft);
+}
+
+.quiz-preview-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+body.dark .document-preview-item summary {
+    color: var(--um-yellow);
+}
+
+.document-preview-item p,
+.document-preview-item .card-link {
+    margin: 0 16px 12px;
+}
+
+.document-preview-frame {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    background: var(--bg-soft);
+}
+
 .video-info {
     padding: 16px;
 }
@@ -1543,6 +2317,8 @@ body.dark .analysis-text h3 { color: var(--um-yellow); }
     object-fit: cover;
     transition: transform .5s ease;
 }
+
+.innovation-screenshot-item img { cursor: zoom-in; }
 
 .gallery-item:hover img { transform: scale(1.06); }
 
@@ -1841,6 +2617,10 @@ body.dark .task-item p {
     transition: background var(--transition), border-color var(--transition);
 }
 
+.cycle-artifact-folder {
+    margin-bottom: 32px;
+}
+
 body.dark .folder-container {
     background: #1a2a42;
     border-color: var(--border);
@@ -2036,7 +2816,8 @@ body.dark .doc-card-header p {
     display: block;
 }
 
-.reflection-preview .doc-card-body {
+.reflection-preview .doc-card-body,
+.live-document-preview .doc-card-body {
     height: min(60vh, 520px);
     min-height: 360px;
     max-height: none;
@@ -2044,12 +2825,14 @@ body.dark .doc-card-header p {
     background: #fff;
 }
 
-.reflection-preview .doc-card-body iframe {
+.reflection-preview .doc-card-body iframe,
+.live-document-preview .doc-card-body iframe {
     min-height: 100%;
 }
 
 @media (max-width: 640px) {
-    .reflection-preview .doc-card-body {
+    .reflection-preview .doc-card-body,
+    .live-document-preview .doc-card-body {
         height: 60vh;
         min-height: 320px;
     }
@@ -2238,6 +3021,10 @@ footer p { color: rgba(255,255,255,.72); }
     .nav-menu { gap: 0; }
     .nav-menu a { padding-inline: 8px; font-size: 13px; }
     .hero-grid { gap: 45px; }
+    .innovation-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
     .card-grid { grid-template-columns: 1fr; }
     .section-compact .card-grid { grid-template-columns: 1fr; }
     .artifact-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -2319,6 +3106,8 @@ footer p { color: rgba(255,255,255,.72); }
     }
 
     .journey-dot { left: 15px; }
+    .reflection-journey .journey-item:nth-child(even) .journey-content { grid-column: auto; }
+    .reflection-teacher-layout { grid-template-columns: 1fr; }
 
     .semester-grid,
     .semester-grid.three,
@@ -2331,6 +3120,7 @@ footer p { color: rgba(255,255,255,.72); }
     .analysis-content {
         grid-template-columns: 1fr;
     }
+    .document-preview-frame { height: 320px; }
 
     .analysis-item.reverse .analysis-image { order: 0; }
 
@@ -2340,6 +3130,41 @@ footer p { color: rgba(255,255,255,.72); }
 
 @media (max-width: 560px) {
     :root { --header-height: 68px; }
+
+    .innovation-results {
+        grid-template-columns: 1fr;
+        padding: 14px 20px;
+        text-align: left;
+    }
+
+    .innovation-detail-card { padding: 22px; }
+
+    .innovation-identity-card { padding: 21px; }
+
+    .innovation-identity-list {
+        grid-template-columns: 1fr;
+    }
+
+    .innovation-identity-list > div {
+        grid-template-columns: minmax(112px, .75fr) minmax(0, 1.5fr);
+        gap: 10px;
+    }
+
+    .innovation-identity-heading h3 { font-size: 21px; }
+
+    .innovation-results > div {
+        grid-template-columns: 110px 1fr;
+        align-items: center;
+        padding: 12px 0;
+    }
+
+    .innovation-results > div + div {
+        border-top: 1px solid var(--border);
+        border-left: 0;
+    }
+
+    .innovation-results strong { font-size: 21px; }
+    .innovation-artifacts .innovation-artifact-grid { grid-template-columns: 1fr; }
 
     section { padding: 24px 16px; }
     .section-compact {
