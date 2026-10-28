@@ -335,15 +335,19 @@
                             </div>
                             <div class="analysis-media">
                                 <article class="video-card">
-                                    <div class="artifact-preview artifact-preview-placeholder" role="img" aria-label="Pratinjau video praktik mengajar mandiri Siklus 2">
-                                        Area pratinjau video<br>Tambahkan tautan preview Google Drive.
-                                    </div>
+                                    <iframe
+                                        class="artifact-preview"
+                                        src="https://drive.google.com/file/d/1mxSJfPsweHJBOefXtLA8vcINTEMUBB51/preview?autoplay=1"
+                                        title="Pratinjau video praktik mengajar mandiri Siklus 2 (Pertemuan 7)"
+                                        allow="autoplay; fullscreen"
+                                        allowfullscreen>
+                                    </iframe>
                                     <div class="video-info">
                                         <h3>
                                             Pratinjau Video Praktik Mengajar
                                         </h3>
                                         <p>
-                                            Tambahkan tautan preview rekaman pelaksanaan praktik mengajar Siklus 2.
+                                            Rekaman pelaksanaan pembelajaran Siklus 2 (Pertemuan 7).
                                         </p>
                                     </div>
                                 </article>
@@ -529,19 +533,15 @@
                     </p>
                 </div>
                 <div class="teaching-video-layout">
-                    <video class="teaching-video-player" controls autoplay muted playsinline preload="metadata" aria-label="Video dokumentasi mengajar Siklus 2">
-                    </video>
+                    <iframe class="teaching-video-player" src="https://drive.google.com/file/d/1mxSJfPsweHJBOefXtLA8vcINTEMUBB51/preview?autoplay=1" title="Video dokumentasi mengajar Siklus 2 (Pertemuan 7)" allow="autoplay; fullscreen" allowfullscreen></iframe>
                     <div class="info-box teaching-video-description">
                         <h3>
                             Dokumentasi Pembelajaran
                         </h3>
                         <p>
-                            Video ini menampilkan proses pembelajaran, interaksi dengan murid, serta penerapan
-                            strategi dan media pada Siklus 2.
+                            Video ini menampilkan proses pembelajaran, interaksi dengan murid, serta penerapan strategi dan media pada Siklus 2 (Pertemuan 7).
                         </p>
-                        <p>
-                            Untuk menampilkan video, tambahkan tautan langsung berkas video (misalnya MP4) pada atribut <code>src</code> elemen video. Pemutaran otomatis aktif dalam keadaan tanpa suara; suara dapat dinyalakan melalui kontrol pemutar.
-                        </p>
+                        <a class="card-link" href="https://drive.google.com/file/d/1mxSJfPsweHJBOefXtLA8vcINTEMUBB51/view?usp=sharing" target="_blank" rel="noopener noreferrer">Buka video di Google Drive →</a>
                     </div>
                 </div>
             </section>
@@ -571,26 +571,80 @@
                 </div>
             </section>
         </main>
-        <footer>
-            <div class="footer-grid">
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    type="button"
+    aria-label="Kembali ke atas">
+    &uarr;
+</button>
+
+<footer>
+
+    <div class="footer-grid">
+
+        <!-- KOLOM 1: BRAND -->
+        <div>
+            <h2>PPG E - Portofolio</h2>
+            <p>
+                Dokumentasi perjalanan dan pengembangan profesional 
+                Siska Yulia Rahmawati sebagai mahasiswa PPG Prajabatan 
+                Informatika di Universitas Negeri Malang.
+            </p>
+        </div>
+
+        <!-- KOLOM 2: NAVIGASI UTAMA -->
         <div>
             <h3>Navigasi</h3>
             <div class="footer-links">
-    <a href="../../index.html#hero">Home</a>
-    <a href="../../index.html#semester1">Semester 1</a>
-    <a href="../../index.html#semester2">Semester 2</a>
-    <a href="../../refleksi-ppg.html">Refleksi PPG</a>
-    <a href="../../inovasi-pembelajaran.html">Inovasi Pembelajaran</a>
-    <a href="../../tentang-saya.html">Tentang Saya</a>
-</div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-                <p>
-                    © <span data-current-year>2026</span> Siska Yulia Rahmawati • PPG E - Portofolio
-                </p>
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../index.html#semester1">Semester 1</a>
+                <a href="../../index.html#semester2">Semester 2</a>
+                <a href="../../refleksi-ppg.html">Refleksi PPG</a>
+                <a href="../../inovasi-pembelajaran.html">Inovasi Pembelajaran</a>
+                <a href="../../tentang-saya.html">Tentang Saya</a>
             </div>
-        </footer>
-        <script src="../../assets/js/script.js"></script>
-    </body>
+        </div>
+
+        <!-- KOLOM 3: KONTAK (PAKAI EMOJI) -->
+        <div>
+            <h3>Terhubung</h3>
+            <div class="footer-links">
+                <a href="mailto:siska.yulia.2531537@students.um.ac.id">
+                    ✉️ siska.yulia.2531537@students.um.ac.id
+                </a>
+                <a href="https://www.instagram.com/siskayuraa/" target="_blank" rel="noopener noreferrer">
+                    📷 @siskayuraa
+                </a>
+                <a href="https://um.ac.id" target="_blank" rel="noopener noreferrer">
+                    🏛️ Universitas Negeri Malang
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; <span data-current-year>2026</span> 
+            Siska Yulia Rahmawati &bull; 
+            PPG E - Portofolio
+        </p>
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="../../assets/js/script.js"></script>
+
+</body>
 </html>
