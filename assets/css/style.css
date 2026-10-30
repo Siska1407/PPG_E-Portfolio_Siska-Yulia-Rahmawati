@@ -1563,7 +1563,7 @@ body.dark .card-link { color: var(--um-yellow); }
 .infinite-gallery-track-group {
     display: flex;
     flex: 0 0 auto;
-    animation: infinite-gallery-scroll 25s linear infinite;
+    animation: infinite-gallery-scroll 140s linear infinite;
     will-change: transform;
 }
 
@@ -1623,6 +1623,8 @@ body.dark .card-link { color: var(--um-yellow); }
     color: #fff;
     font-size: 13px;
     font-weight: 700;
+    line-height: 1.35;
+    text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
 .reflection-gallery-placeholder {

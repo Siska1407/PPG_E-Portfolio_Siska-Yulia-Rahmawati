@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
             startX = event.clientX;
             startScrollLeft = gallery.scrollLeft;
             pressedImage = event.target.closest(
-                ".innovation-screenshot-item img, .reflection-gallery img"
+                ".infinite-gallery-item img, .innovation-screenshot-item img, .reflection-gallery img"
             );
             if (pressedImage?.closest('[aria-hidden="true"]')) {
                 pressedImage = null;
@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const galleryImages =
         document.querySelectorAll(
-            ".gallery-item img, .innovation-screenshot-item img, .reflection-gallery img"
+            ".infinite-gallery-item img, .gallery-item img, .innovation-screenshot-item img, .reflection-gallery img"
         );
 
     if (galleryImages.length > 0) {
